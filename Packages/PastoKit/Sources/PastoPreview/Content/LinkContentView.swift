@@ -26,6 +26,8 @@ final class LinkContentView: NSView, ItemContentView, FooterProviding, Preferred
     private var didFailLoading = false
 
     private let loader = NSProgressIndicator(frame: .zero)
+    /// Shows a page that has started to arrive but has not finished within a moment.
+    private var reveal: Task<Void, Never>?
     private lazy var webView = makeWebView()
     private lazy var addressView = makeAddressView()
 
@@ -37,6 +39,8 @@ final class LinkContentView: NSView, ItemContentView, FooterProviding, Preferred
         self.url = url
         super.init(frame: .zero)
         loader.style = .spinning
+        // A spinner that has stopped is otherwise left on screen, frozen over the page.
+        loader.isDisplayedWhenStopped = false
         readPageTitle(of: item)
         rebuild()
     }
@@ -124,14 +128,34 @@ final class LinkContentView: NSView, ItemContentView, FooterProviding, Preferred
 
     private func load(_ address: URL) {
         didFailLoading = false
+        reveal?.cancel()
         webView.isHidden = true
         loader.startAnimation(nil)
         webView.load(URLRequest(url: address, timeoutInterval: PreviewMetrics.pageTimeout))
     }
 
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    /// The page is on show and the spinner gone.
+    private func showPage() {
+        reveal?.cancel()
+        reveal = nil
         loader.stopAnimation(nil)
         webView.isHidden = false
+    }
+
+    /// The page has started to arrive. Most finish soon after; one that keeps loading (a slow
+    /// image, a stream that never ends) is shown as far as it has got instead of leaving the
+    /// spinner up until it is done.
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        reveal?.cancel()
+        reveal = Task { [weak self] in
+            try? await Task.sleep(for: PreviewMetrics.pageRevealDelay)
+            guard !Task.isCancelled else { return }
+            self?.showPage()
+        }
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        showPage()
     }
 
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: any Error) {
@@ -145,8 +169,7 @@ final class LinkContentView: NSView, ItemContentView, FooterProviding, Preferred
     /// A page that cannot be loaded leaves a blank one: no message, no retry.
     private func pageDidFail() {
         guard !didFailLoading, let blankPage = Self.blankPage else {
-            loader.stopAnimation(nil)
-            webView.isHidden = false
+            showPage()
             return
         }
         didFailLoading = true

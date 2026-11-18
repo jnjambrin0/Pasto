@@ -79,6 +79,8 @@ nonisolated enum PreviewMetrics {
 
     static let loaderSide: CGFloat = 24
     static let pageTimeout: TimeInterval = 60
+    /// How long a page that has started to arrive may keep the spinner before it is shown anyway.
+    static let pageRevealDelay = Duration.seconds(1.5)
     static let linkEditorInset = CGSize(width: 12, height: 12)
 
     // MARK: Image

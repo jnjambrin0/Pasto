@@ -12,6 +12,14 @@ embeds in the update feed. This file collects the same notes, grouped by kind of
 
 - The source code is public under the MIT licence, with guides to the architecture, development and releases.
 
+## [1.0.5] - 2026-11-18
+
+### Fixed
+
+- **Link previews no longer keep a frozen spinner**: the loading spinner stayed in the middle of the page after it
+  had loaded. It now goes away, and a page that keeps loading is shown after a moment instead of waiting for it to
+  finish.
+
 ## [1.0.4] - 2026-11-18
 
 ### Changed
@@ -121,7 +129,8 @@ The first release of Pasto, a clipboard manager for your Mac. Pasto needs macOS 
 - **Suggestions**: Pasto can look at the window you are pasting into and put the clips that fit it first.
 - **Updates**: Pasto checks for new versions once a day. You can also choose *Check for Updates…* in its menu.
 
-[Unreleased]: https://github.com/jnjambrin0/Pasto/compare/v1.0.4...HEAD
+[Unreleased]: https://github.com/jnjambrin0/Pasto/compare/v1.0.5...HEAD
+[1.0.5]: https://github.com/jnjambrin0/Pasto/releases/tag/v1.0.5
 [1.0.4]: https://github.com/jnjambrin0/Pasto/releases/tag/v1.0.4
 [1.0.3]: https://github.com/jnjambrin0/Pasto/releases/tag/v1.0.3
 [1.0.2]: https://github.com/jnjambrin0/Pasto/releases/tag/v1.0.2
