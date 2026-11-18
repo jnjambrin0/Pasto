@@ -1,0 +1,26 @@
+# The repository is macOS-only: text files use LF everywhere.
+* text=auto eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.tiff binary
+*.icns binary
+*.aiff binary
+*.car binary
+*.dmg binary
+
+# String catalogs, asset catalogs, the icon document, design exports and the Xcode project are
+# generated or tool-written: keep them out of the language statistics.
+*.xcstrings linguist-generated=true
+*.xcassets/** linguist-generated=true
+*.icon/** linguist-generated=true
+Design/** linguist-generated=true
+Pasto.xcodeproj/** linguist-generated=true
+Package.resolved linguist-generated=true
+
+# Documentation is not code.
+docs/** linguist-documentation=true
+*.md linguist-documentation=true

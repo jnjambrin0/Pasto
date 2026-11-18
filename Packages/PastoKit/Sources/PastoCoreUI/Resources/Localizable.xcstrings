@@ -1,0 +1,146 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "card.accessibility.application" : {
+      "comment" : "VoiceOver label of a card that shows no date (on a pinboard): its title and the app it was copied from.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@, from %2$@" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%1$@, de %2$@" } }
+      }
+    },
+    "card.accessibility.content" : {
+      "comment" : "VoiceOver label of a card: what is said about it, then the start of its content.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@: %2$@" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%1$@: %2$@" } }
+      }
+    },
+    "card.accessibility.date" : {
+      "comment" : "VoiceOver label of a card with no source app: its title and how long ago it was copied (\"5 minutes ago\").",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@, copied %2$@" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%1$@, %2$@" } }
+      }
+    },
+    "card.accessibility.dateAndApplication" : {
+      "comment" : "VoiceOver label of a card: its title, how long ago it was copied (\"5 minutes ago\") and the app it was copied from.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%1$@, copied %2$@ from %3$@" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "%1$@, de %3$@, %2$@" } }
+      }
+    },
+    "card.date.justNow" : {
+      "comment" : "Date of an item copied a moment ago, in a card's header.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "just now" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "ahora mismo" } }
+      }
+    },
+    "card.files.multiple" : {
+      "comment" : "Caption under the icon of a card that holds several files.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Multiple files" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Varios archivos" } }
+      }
+    },
+    "card.text.characterCount" : {
+      "comment" : "Caption at the bottom of a text card: length of the text.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld character" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld characters" } }
+            }
+          }
+        },
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld carácter" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld caracteres" } }
+            }
+          }
+        }
+      }
+    },
+    "card.type.color" : {
+      "comment" : "Default title of a colour card.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Color" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Color" } }
+      }
+    },
+    "card.type.files" : {
+      "comment" : "Default title of a card that holds files; the argument is how many.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "File" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld files" } }
+            }
+          }
+        },
+        "es" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "Archivo" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld archivos" } }
+            }
+          }
+        }
+      }
+    },
+    "card.type.image" : {
+      "comment" : "Default title of an image card.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Image" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Imagen" } }
+      }
+    },
+    "card.type.link" : {
+      "comment" : "Default title of a link card.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Link" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Enlace" } }
+      }
+    },
+    "card.type.text" : {
+      "comment" : "Default title of a text card.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Text" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Texto" } }
+      }
+    },
+    "card.type.unknown" : {
+      "comment" : "Default title of a card whose content has no known type.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Unknown" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Desconocido" } }
+      }
+    },
+    "card.unknown.previewUnavailable" : {
+      "comment" : "Caption of a card whose content cannot be previewed.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No preview available" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Vista previa no disponible" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}

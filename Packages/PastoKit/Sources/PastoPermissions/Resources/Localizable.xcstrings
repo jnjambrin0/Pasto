@@ -1,0 +1,363 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "accessibility.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Once Pasto is allowed under Device Control and Data Access, choosing an item pastes it into the app you were using. Without it, Pasto can only copy the item for you to paste."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuando Pasto tiene permiso en Control de dispositivos y acceso a datos, al elegir un ítem se pega en la app que estabas usando. Sin él, Pasto solo puede copiarlo para que lo pegues tú."
+          }
+        }
+      }
+    },
+    "accessibility.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste Into Any App"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pega en cualquier app"
+          }
+        }
+      }
+    },
+    "action.allowAccess": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow Access"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir acceso"
+          }
+        }
+      }
+    },
+    "action.checking": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comprobando…"
+          }
+        }
+      }
+    },
+    "action.continue": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar"
+          }
+        }
+      }
+    },
+    "action.openSystemSettings": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open System Settings"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Ajustes del Sistema"
+          }
+        }
+      }
+    },
+    "pasteToOtherApps.allow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow Access"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir acceso"
+          }
+        }
+      }
+    },
+    "pasteToOtherApps.copy": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not Now, Just Copy It"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ahora no, solo copiar"
+          }
+        }
+      }
+    },
+    "pasteToOtherApps.currentApp": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "the app you’re using"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "la app que estás usando"
+          }
+        }
+      }
+    },
+    "pasteToOtherApps.description": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto can press ⌘V for you, so the item you choose lands where you were typing. macOS asks for Device Control and Data Access before an app may do that."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto puede pulsar ⌘V por ti para que el ítem que elijas aparezca donde estabas escribiendo. macOS exige el permiso de Control de dispositivos y acceso a datos antes de que una app pueda hacerlo."
+          }
+        }
+      }
+    },
+    "pasteToOtherApps.doNotAskAgain": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Don’t ask again"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No volver a preguntar"
+          }
+        }
+      }
+    },
+    "pasteToOtherApps.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste straight into %@?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Pegar directamente en %@?"
+          }
+        }
+      }
+    },
+    "pasteboard.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto keeps your history by reading the clipboard each time you copy. In System Settings › Privacy & Security › Paste from Other Apps, choose Allow for Pasto so macOS doesn’t ask every time."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto guarda tu historial leyendo el portapapeles cada vez que copias. En Ajustes del Sistema › Privacidad y seguridad › Pegar desde otras apps, elige Permitir para Pasto y macOS no preguntará cada vez."
+          }
+        }
+      }
+    },
+    "pasteboard.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Let Pasto See What You Copy"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deja que Pasto vea lo que copias"
+          }
+        }
+      }
+    },
+    "screenCaptureCheck.failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS didn’t allow it. Choose Continue again, then Allow."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS no lo ha permitido. Pulsa Continuar otra vez y elige Permitir."
+          }
+        }
+      }
+    },
+    "screenCaptureCheck.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen recording is on. macOS asks once more whether Pasto may access your screen directly — and again about once a month: choose Allow."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La grabación de pantalla ya está activada. macOS pregunta una vez más si Pasto puede acceder directamente a la pantalla (y lo repite más o menos una vez al mes): elige Permitir."
+          }
+        }
+      }
+    },
+    "screenCaptureCheck.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One More Step"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un paso más"
+          }
+        }
+      }
+    },
+    "screenRecording.quitAndReopen": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn Pasto on in the list. When macOS offers “Quit & Reopen”, choose it: Pasto opens again and finishes here. If Pasto is already on, turn it off and on again."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa Pasto en la lista. Cuando macOS ofrezca «Salir y volver a abrir», elígelo: Pasto se abre de nuevo y termina aquí. Si Pasto ya está activado, desactívalo y vuelve a activarlo."
+          }
+        }
+      }
+    },
+    "screenRecording.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With Screen & System Audio Recording access, Pasto looks at the window you are about to paste into and suggests the items that fit it."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con el acceso de Grabación de pantalla y del audio del sistema, Pasto mira la ventana en la que vas a pegar y te sugiere los ítems que encajan."
+          }
+        }
+      }
+    },
+    "screenRecording.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suggestions While You Paste"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sugerencias al pegar"
+          }
+        }
+      }
+    },
+    "state.granted": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Access granted"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acceso concedido"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Paste",
+    "bundleIdentifiers": ["com.wiheads.paste", "com.wiheads.paste-direct", "com.wiheads.paste-setapp"],
+    "shortcuts": [
+      { "keyCode": 9, "internalModifiers": 1179648 },
+      { "keyCode": 8, "internalModifiers": 1179648 }
+    ]
+  },
+  {
+    "name": "Maccy",
+    "bundleIdentifiers": ["org.p0deje.Maccy"],
+    "shortcuts": [
+      { "keyCode": 8, "internalModifiers": 1179648 }
+    ]
+  },
+  {
+    "name": "Pastebot",
+    "bundleIdentifiers": ["com.tapbots.Pastebot2Mac"],
+    "shortcuts": [
+      { "keyCode": 9, "internalModifiers": 1179648 }
+    ]
+  },
+  {
+    "name": "Clipy",
+    "bundleIdentifiers": ["com.clipy-app.Clipy"],
+    "shortcuts": [
+      { "keyCode": 9, "internalModifiers": 1179648 }
+    ]
+  },
+  {
+    "name": "Flycut",
+    "bundleIdentifiers": ["com.generalarcade.flycut"],
+    "shortcuts": [
+      { "keyCode": 9, "internalModifiers": 1179648 }
+    ]
+  },
+  {
+    "name": "CopyClip",
+    "bundleIdentifiers": ["com.fiplab.copyclip2"],
+    "shortcuts": []
+  }
+]

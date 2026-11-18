@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Pasto website and help
+    url: https://pasto.jnjambrino.com
+    about: Downloads, getting started and frequently asked questions.
+  - name: Contact
+    url: https://pasto.jnjambrino.com/contact
+    about: Questions that are not bug reports or feature requests.
+  - name: Report a security problem privately
+    url: https://github.com/jnjambrin0/Pasto/security/advisories/new
+    about: Please do not open a public issue for security problems.

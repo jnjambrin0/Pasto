@@ -1,0 +1,1869 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "about.acknowledgements": {
+      "comment": "About window button that opens the third-party licenses, and that window's title.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acknowledgements"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agradecimientos"
+          }
+        }
+      }
+    },
+    "about.copyright": {
+      "comment": "About window: the copyright line.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "© 2026 Jaime Navas"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "© 2026 Jaime Navas"
+          }
+        }
+      }
+    },
+    "about.disclaimer": {
+      "comment": "About window, under the copyright line.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Free software, provided as is, without warranty."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Software gratuito, ofrecido tal cual, sin garantía."
+          }
+        }
+      }
+    },
+    "about.version": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versión %@"
+          }
+        }
+      }
+    },
+    "about.windowTitle": {
+      "comment": "Title of the About window; hidden, read by VoiceOver and Mission Control.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About Pasto"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de Pasto"
+          }
+        }
+      }
+    },
+    "acknowledgements.introduction": {
+      "comment": "Acknowledgements window: the line above the licenses.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto includes the following third-party software, distributed under these licenses."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto incluye el siguiente software de terceros, distribuido con estas licencias."
+          }
+        }
+      }
+    },
+    "welcome.help.pageTitle": {
+      "comment": "Welcome content: what the help link's preview says about the contact page.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ask a question or report a problem"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haz una pregunta o informa de un problema"
+          }
+        }
+      }
+    },
+    "welcome.help.title": {
+      "comment": "Welcome content: name of the link to the contact page, on the welcome pinboard.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Need a Hand?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Necesitas ayuda?"
+          }
+        }
+      }
+    },
+    "welcome.note.text": {
+      "comment": "Welcome content: text of the note that opens the welcome pinboard.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The links on this pinboard lead to Pasto’s website, to help when you need it and to what’s new in each version.\n\nOpen one with ⌘O, or with Open in its right-click menu. The pinboard is yours: rename it, add to it or delete it whenever you like."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los enlaces de este pinboard llevan a la web de Pasto, a la ayuda por si la necesitas y a las novedades de cada versión.\n\nAbre uno con ⌘O o con Abrir en su menú de clic derecho. El pinboard es tuyo: cámbiale el nombre, añádele lo que quieras o elimínalo cuando te parezca."
+          }
+        }
+      }
+    },
+    "welcome.note.title": {
+      "comment": "Welcome content: name of the note that opens the welcome pinboard.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Welcome to Pasto"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te damos la bienvenida"
+          }
+        }
+      }
+    },
+    "welcome.paste.text": {
+      "comment": "Welcome content: text of the history note on pasting. %@ is the activation shortcut, such as ⇧⌘V.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Everything you copy is kept here, newest first.\n\nPress %@ in any app to open Pasto, choose an item with the arrow keys and press Return to paste it. Press Space for a closer look first."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo lo que copias se guarda aquí, lo más reciente primero.\n\nPulsa %@ en cualquier app para abrir Pasto, elige un ítem con las flechas y pulsa Retorno para pegarlo. Pulsa Espacio para verlo de cerca antes."
+          }
+        }
+      }
+    },
+    "welcome.paste.textWithoutShortcut": {
+      "comment": "Welcome content: text of the history note on pasting, when no activation shortcut is set.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Everything you copy is kept here, newest first.\n\nOpen Pasto from its icon in the menu bar, choose an item with the arrow keys and press Return to paste it. Press Space for a closer look first."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo lo que copias se guarda aquí, lo más reciente primero.\n\nAbre Pasto desde su icono en la barra de menús, elige un ítem con las flechas y pulsa Retorno para pegarlo. Pulsa Espacio para verlo de cerca antes."
+          }
+        }
+      }
+    },
+    "welcome.paste.title": {
+      "comment": "Welcome content: name of the history note on pasting.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste Again"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pega de nuevo"
+          }
+        }
+      }
+    },
+    "welcome.pin.text": {
+      "comment": "Welcome content: text of the history note on pinboards.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Right-click an item and choose Pin to keep it on a pinboard, or drag it onto a pinboard’s tab.\n\nPinned items stay put when older copies leave the history."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haz clic derecho en un ítem y elige Fijar para guardarlo en un pinboard, o arrástralo a la pestaña de un pinboard.\n\nLos ítems fijados se quedan aunque las copias antiguas salgan del historial."
+          }
+        }
+      }
+    },
+    "welcome.pin.title": {
+      "comment": "Welcome content: name of the history note on pinboards.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep What Matters"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guarda lo importante"
+          }
+        }
+      }
+    },
+    "welcome.pinboard.name": {
+      "comment": "Welcome content: name of the pinboard that holds the welcome note and links.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto Links"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enlaces de Pasto"
+          }
+        }
+      }
+    },
+    "welcome.releases.pageTitle": {
+      "comment": "Welcome content: what the news link's preview says about the release notes page.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read the notes of every version"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lee las notas de cada versión"
+          }
+        }
+      }
+    },
+    "welcome.releases.title": {
+      "comment": "Welcome content: name of the link to the release notes, on the welcome pinboard.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What’s New"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novedades"
+          }
+        }
+      }
+    },
+    "welcome.search.text": {
+      "comment": "Welcome content: text of the history note on searching.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With Pasto open, just start typing to search everything you’ve copied.\n\nChoose one of the suggestions that appear as you type to see only what came from one app, or only links, images or files."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Con Pasto abierto, empieza a escribir para buscar en todo lo que has copiado.\n\nElige una de las sugerencias que aparecen al escribir para ver solo lo que vino de una app, o solo enlaces, imágenes o archivos."
+          }
+        }
+      }
+    },
+    "welcome.search.title": {
+      "comment": "Welcome content: name of the history note on searching.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find It Fast"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Encuéntralo rápido"
+          }
+        }
+      }
+    },
+    "welcome.website.pageTitle": {
+      "comment": "Welcome content: what the website link's preview says about Pasto's home page.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See everything Pasto can do"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descubre todo lo que puede hacer Pasto"
+          }
+        }
+      }
+    },
+    "welcome.website.title": {
+      "comment": "Welcome content: name of the link to Pasto's website, on the welcome pinboard.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get to Know Pasto"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conoce Pasto"
+          }
+        }
+      }
+    },
+    "alert.cancel": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        }
+      }
+    },
+    "alert.delete": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
+          }
+        }
+      }
+    },
+    "alert.ok": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aceptar"
+          }
+        }
+      }
+    },
+    "alert.reduceHistory.message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pinned items and pinboards are kept. This can’t be undone."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los ítems fijados y los pinboards se conservan. Esta acción no se puede deshacer."
+          }
+        }
+      }
+    },
+    "alert.reduceHistory.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Some items are older than the new limit. Delete them and apply the limit?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hay ítems más antiguos que el nuevo límite. ¿Eliminarlos y aplicar el límite?"
+          }
+        }
+      }
+    },
+    "intro.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get Started"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar"
+          }
+        }
+      }
+    },
+    "intro.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto remembers the text, links, images and files you copy, so you can find any of them later and paste it wherever you are working."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto recuerda los textos, enlaces, imágenes y archivos que copias para que puedas encontrarlos más tarde y pegarlos donde estés trabajando."
+          }
+        }
+      }
+    },
+    "intro.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Everything You Copy, Ready to Paste Again"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo lo que copias, listo para volver a pegarlo"
+          }
+        }
+      }
+    },
+    "notice.action.allow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir…"
+          }
+        }
+      }
+    },
+    "notice.action.enable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activar"
+          }
+        }
+      }
+    },
+    "notice.action.gotIt": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Got It"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entendido"
+          }
+        }
+      }
+    },
+    "notice.close": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
+          }
+        }
+      }
+    },
+    "notice.directPaste.description": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Have the item you choose pasted into the app you are using."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Haz que el ítem que elijas se pegue en la app que estás usando."
+          }
+        }
+      }
+    },
+    "notice.directPaste.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste Directly"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegado directo"
+          }
+        }
+      }
+    },
+    "notice.enabled": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enabled"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activado"
+          }
+        }
+      }
+    },
+    "notice.openAtLogin.description": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Pasto with your Mac so nothing you copy is missed."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arranca Pasto con tu Mac para no perder nada de lo que copies."
+          }
+        }
+      }
+    },
+    "notice.openAtLogin.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open at Login"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir al iniciar sesión"
+          }
+        }
+      }
+    },
+    "notice.otherClipboardManagers.description": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Also running: %@. When two apps share a shortcut, only one of them responds."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "También en marcha: %@. Si dos apps comparten un atajo, solo responde una."
+          }
+        }
+      }
+    },
+    "notice.otherClipboardManagers.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Another Clipboard App"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otra app de portapapeles"
+          }
+        }
+      }
+    },
+    "notice.pasteboardAccess.description": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing you copy is saved until you allow it."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se guarda nada de lo que copias hasta que lo permitas."
+          }
+        }
+      }
+    },
+    "notice.pasteboardAccess.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto Can’t See What You Copy"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto no ve lo que copias"
+          }
+        }
+      }
+    },
+    "setup.action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar"
+          }
+        }
+      }
+    },
+    "setup.history.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How long Pasto keeps what you copy."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuánto tiempo guarda Pasto lo que copias."
+          }
+        }
+      }
+    },
+    "setup.history.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipboard history"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Historial del portapapeles"
+          }
+        }
+      }
+    },
+    "setup.history.unlimited": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlimited"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin límite"
+          }
+        }
+      }
+    },
+    "setup.history.unlimitedWarning": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A history without a limit can take up a lot of disk space over time."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un historial sin límite puede ocupar mucho espacio en disco con el tiempo."
+          }
+        }
+      }
+    },
+    "setup.openAtLogin.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto starts with your Mac and stays out of the way."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto arranca con tu Mac y se queda en segundo plano."
+          }
+        }
+      }
+    },
+    "setup.openAtLogin.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open at login"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir al iniciar sesión"
+          }
+        }
+      }
+    },
+    "setup.shortcut.bothTakenNote": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other apps already use %1$@ and %2$@. Choose a shortcut here to open Pasto."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otras apps ya usan %1$@ y %2$@. Elige aquí un atajo para abrir Pasto."
+          }
+        }
+      }
+    },
+    "setup.shortcut.clear": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear shortcut"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitar el atajo"
+          }
+        }
+      }
+    },
+    "setup.shortcut.conflict.menu": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It’s already the shortcut for the menu command “%@”."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya es el atajo del comando de menú «%@»."
+          }
+        }
+      }
+    },
+    "setup.shortcut.conflict.shortcut": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "It’s already the shortcut for “%@”."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya es el atajo de «%@»."
+          }
+        }
+      }
+    },
+    "setup.shortcut.conflict.system": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS already uses it for one of its keyboard shortcuts."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS ya lo usa para uno de sus atajos de teclado."
+          }
+        }
+      }
+    },
+    "setup.shortcut.conflict.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This shortcut can’t be used"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se puede usar este atajo"
+          }
+        }
+      }
+    },
+    "setup.shortcut.name.nextPinboard": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show next pinboard"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar el pinboard siguiente"
+          }
+        }
+      }
+    },
+    "setup.shortcut.name.pasteAll": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste All"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegar todo"
+          }
+        }
+      }
+    },
+    "setup.shortcut.name.pasteStack": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Stack"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Stack"
+          }
+        }
+      }
+    },
+    "setup.shortcut.name.previousPinboard": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show previous pinboard"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar el pinboard anterior"
+          }
+        }
+      }
+    },
+    "setup.shortcut.none": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ninguno"
+          }
+        }
+      }
+    },
+    "setup.shortcut.recording": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recording…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grabando…"
+          }
+        }
+      }
+    },
+    "setup.shortcut.space": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Space"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espacio"
+          }
+        }
+      }
+    },
+    "setup.shortcut.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens and closes Pasto from any app."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre y cierra Pasto desde cualquier app."
+          }
+        }
+      }
+    },
+    "setup.shortcut.takenNote": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Another app already uses %@. You can choose a different shortcut here."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otra app ya usa %@. Puedes elegir otro atajo aquí."
+          }
+        }
+      }
+    },
+    "setup.shortcut.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activation shortcut"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atajo de activación"
+          }
+        }
+      }
+    },
+    "setup.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A few choices to begin with. You can change them at any time in Settings."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unas pocas opciones para empezar. Puedes cambiarlas cuando quieras en Ajustes."
+          }
+        }
+      }
+    },
+    "setup.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick Start"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicio rápido"
+          }
+        }
+      }
+    },
+    "window.title": {
+      "comment": "Title of the onboarding window; hidden, read by VoiceOver and Mission Control.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Welcome to Pasto"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te damos la bienvenida a Pasto"
+          }
+        }
+      }
+    },
+    "notice.shortcutsTaken.title": {
+      "comment": "Title of the notice card shown when another app or macOS also uses one of Pasto's shortcuts.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shortcut in Use"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atajo en uso"
+          }
+        }
+      }
+    },
+    "notice.shortcutsTaken.description": {
+      "comment": "Body of the notice card about shortcuts in use; %@ is the list of shortcuts, such as ⇧⌘V and ⇧⌘C.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Another app or macOS also uses %@, so it may not reach Pasto."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otra app o macOS también usa %@, así que puede que no llegue a Pasto."
+          }
+        }
+      }
+    },
+    "notice.storeWriteFailure.title": {
+      "comment": "Notice card shown after several writes to the store fail in a row, usually because the disk is full.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto Can’t Save What You Copy"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasto no puede guardar lo que copias"
+          }
+        }
+      }
+    },
+    "notice.storeWriteFailure.description": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your Mac may be out of space. Pasto keeps trying and this card goes away once it can save again."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puede que el Mac se haya quedado sin espacio. Pasto lo sigue intentando y esta tarjeta se va cuando vuelve a poder guardar."
+          }
+        }
+      }
+    },
+    "notice.action.storage": {
+      "comment": "Button of the notice card about failed saves: opens System Settings › General › Storage.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Storage…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Almacenamiento…"
+          }
+        }
+      }
+    },
+    "notice.action.change": {
+      "comment": "Button of the notice card about shortcuts in use: opens Settings › Shortcuts.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambiar…"
+          }
+        }
+      }
+    },
+    "step.notNow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not Now"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ahora no"
+          }
+        }
+      }
+    },
+    "step.openSystemSettings": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open System Settings"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Ajustes del Sistema"
+          }
+        }
+      }
+    },
+    "setup.finish": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Using Pasto"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar a usar Pasto"
+          }
+        }
+      }
+    },
+    "state.done": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hecho"
+          }
+        }
+      }
+    },
+    "state.pending": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pending"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pendiente"
+          }
+        }
+      }
+    },
+    "state.working": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In progress"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En curso"
+          }
+        }
+      }
+    },
+    "directPaste.settingName": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Device Control and Data Access"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Control de dispositivos y acceso a datos"
+          }
+        }
+      }
+    },
+    "directPaste.allowed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allowed. Choosing an item pastes it where you were."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitido. Al elegir un ítem, se pega donde estabas."
+          }
+        }
+      }
+    },
+    "directPaste.notAllowed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not allowed yet."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún sin permiso."
+          }
+        }
+      }
+    },
+    "directPaste.hint": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In the list, turn Pasto on, then come back here."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En la lista, activa Pasto y vuelve aquí."
+          }
+        }
+      }
+    },
+    "pasteboard.settingName": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste from Other Apps"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegar desde otras apps"
+          }
+        }
+      }
+    },
+    "pasteboard.allowed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow. Pasto saves everything you copy."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir. Pasto guarda todo lo que copias."
+          }
+        }
+      }
+    },
+    "pasteboard.asks": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ask. macOS would ask every time you copy: choose Allow."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preguntar. macOS preguntaría cada vez que copias: elige Permitir."
+          }
+        }
+      }
+    },
+    "pasteboard.denied": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deny. Pasto can’t save what you copy: choose Allow."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Denegar. Pasto no puede guardar lo que copias: elige Permitir."
+          }
+        }
+      }
+    },
+    "pasteboard.undetermined": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not chosen yet: choose Allow."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin elegir aún: elige Permitir."
+          }
+        }
+      }
+    },
+    "suggestions.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smart Suggestions"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sugerencias inteligentes"
+          }
+        }
+      }
+    },
+    "suggestions.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When you open Pasto, it can put first the items that suit the app you’re pasting into. It all happens on this Mac, with Apple Intelligence: Pasto looks at that window for a moment and keeps nothing of it."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al abrir Pasto, puede poner primero los ítems que encajan con la app en la que vas a pegar. Todo ocurre en este Mac, con Apple Intelligence: Pasto mira esa ventana un momento y no guarda nada de ella."
+          }
+        }
+      }
+    },
+    "suggestions.switch.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suggest items as I paste"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sugerir ítems al pegar"
+          }
+        }
+      }
+    },
+    "suggestions.switch.subtitle": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can change it at any time in Settings › Intelligence."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puedes cambiarlo cuando quieras en Ajustes › Inteligencia."
+          }
+        }
+      }
+    },
+    "suggestions.appleIntelligence.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence"
+          }
+        }
+      }
+    },
+    "suggestions.appleIntelligence.off": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Off. Turn it on in System Settings › Apple Intelligence & Siri."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desactivado. Actívalo en Ajustes del Sistema › Apple Intelligence y Siri."
+          }
+        }
+      }
+    },
+    "suggestions.screenRecording.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Screen & System Audio Recording"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grabación de pantalla y del audio del sistema"
+          }
+        }
+      }
+    },
+    "suggestions.screenRecording.allowed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allowed."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitido."
+          }
+        }
+      }
+    },
+    "suggestions.screenRecording.notAllowed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not allowed yet."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún sin permiso."
+          }
+        }
+      }
+    },
+    "suggestions.screenRecording.waiting": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In System Settings, turn Pasto on in the list."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Ajustes del Sistema, activa Pasto en la lista."
+          }
+        }
+      }
+    },
+    "suggestions.allow": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow Screen Recording"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir grabar la pantalla"
+          }
+        }
+      }
+    },
+    "suggestions.quitAndReopen": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS then offers to quit and reopen Pasto: choose “Quit & Reopen”, and Pasto comes back to this step."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Después macOS ofrece salir de Pasto y volver a abrirlo: elige «Salir y volver a abrir» y Pasto volverá a este paso."
+          }
+        }
+      }
+    },
+    "suggestions.confirmation.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS confirmation"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmación de macOS"
+          }
+        }
+      }
+    },
+    "suggestions.confirmation.pending": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When you check, macOS asks whether Pasto may access the screen directly: choose Allow. It asks again about once a month."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al comprobarlo, macOS pregunta si Pasto puede acceder directamente a la pantalla: elige Permitir. Lo vuelve a preguntar más o menos una vez al mes."
+          }
+        }
+      }
+    },
+    "suggestions.confirmation.done": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmed."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmado."
+          }
+        }
+      }
+    },
+    "suggestions.confirmation.failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not confirmed: check again and choose Allow."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin confirmar: vuelve a comprobarlo y elige Permitir."
+          }
+        }
+      }
+    },
+    "suggestions.check": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check Now"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comprobar ahora"
+          }
+        }
+      }
+    },
+    "suggestions.checking": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comprobando…"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

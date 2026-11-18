@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pastokit:
+    name: PastoKit build and tests
+    # PastoKit targets macOS 27 (swift-tools-version 6.2, `.macOS("27.0")`): it needs Xcode 27.2 or later to
+    # build, and its test binaries only run on macOS 27. GitHub-hosted runners may not offer a macOS 27 image
+    # yet; if `macos-27` is not available, set the repository variable CI_RUNNER to the label of a self-hosted
+    # Mac on macOS 27 with Xcode 27.2 (for example `self-hosted`).
+    runs-on: ${{ vars.CI_RUNNER || 'macos-27' }}
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Select Xcode 27
+        run: |
+          if ! xcodebuild -version | head -1 | grep -q '^Xcode 27'; then
+            xcode="$(ls -d /Applications/Xcode_27*.app 2>/dev/null | sort -V | tail -1)"
+            if [ -z "$xcode" ]; then
+              echo "::error::No Xcode 27 found on this runner"
+              exit 1
+            fi
+            sudo xcode-select --switch "$xcode"
+          fi
+          xcodebuild -version
+          swift --version
+
+      - name: Build
+        run: swift build --package-path Packages/PastoKit
+
+      - name: Test
+        run: swift test --package-path Packages/PastoKit

@@ -1,0 +1,37 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Xcode
+xcuserdata/
+DerivedData/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+*.xcresult
+*.moved-aside
+*.hmap
+*.dSYM
+*.dSYM.zip
+
+# Swift Package Manager (Package.resolved files are committed)
+.build/
+.swiftpm/
+
+# Build products: scripts/build.sh and scripts/release.sh write everything here
+build/
+
+# Local reference material (screenshots, notes): never committed
+reference/
+
+# Merge and editor leftovers
+*.orig
+*.swp
+*~
+
+# Editors and other local tools
+.vscode/
+.idea/
+.claude/

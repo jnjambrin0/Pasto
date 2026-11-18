@@ -1,0 +1,11 @@
+// Public addresses of the distributed app: the one place they are set.
+// Read by the Release build (Config/Info.plist expands PASTO_FEED_URL into SUFeedURL) and by
+// scripts/release.sh (appcast download links). See docs/RELEASING.md.
+//
+// The website that hosts the downloads and the update feed. Change both together, rebuild, and
+// publish the appcast at exactly PASTO_FEED_URL.
+//
+// `//` starts a comment in an xcconfig file, hence the empty `$()` between the slashes.
+
+PASTO_FEED_URL = https:/$()/pasto.jnjambrino.com/appcast.xml
+PASTO_DOWNLOAD_BASE_URL = https:/$()/pasto.jnjambrino.com/downloads

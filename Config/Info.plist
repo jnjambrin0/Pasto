@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleAllowMixedLocalizations</key>
+	<true/>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>es</string>
+	</array>
+	<key>MDItemKeywords</key>
+	<string>clipboard,clipboard manager,clipboard history,copy,paste,pinboard,portapapeles,historial del portapapeles,copiar,pegar</string>
+	<key>NSScreenCaptureUsageDescription</key>
+	<string>Suggestions need to see the app you are about to paste into, to put first the clips that suit it. What they see stays on your Mac.</string>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUFeedURL</key>
+	<string>$(PASTO_FEED_URL)</string>
+	<key>SUPublicEDKey</key>
+	<string>A9j5LwwY+Qw7dRQtPQQ/N/6YCd5/56DT6jazquGKx/s=</string>
+	<key>SUScheduledCheckInterval</key>
+	<integer>86400</integer>
+</dict>
+</plist>

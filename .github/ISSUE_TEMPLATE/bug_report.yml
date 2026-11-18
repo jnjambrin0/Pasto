@@ -1,0 +1,91 @@
+name: Bug report
+description: Something in Pasto does not work as it should.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem.
+
+        **Never paste real clipboard contents, passwords or personal data here.** Describe what you copied instead
+        ("a 3 MB PNG copied from Preview", "a link copied from Safari"). Security problems go through a private
+        report, not an issue: see [SECURITY.md](https://github.com/jnjambrin0/Pasto/blob/main/SECURITY.md).
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected to see instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: The shortest sequence that shows the problem.
+      placeholder: |
+        1. Copy a link in Safari
+        2. Press ⇧⌘V
+        3. …
+    validations:
+      required: true
+  - type: input
+    id: pasto-version
+    attributes:
+      label: Pasto version
+      description: Pasto menu › About Pasto, for example "1.0.3 (412)".
+    validations:
+      required: true
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS version
+      description: Apple menu › About This Mac, for example "macOS 27.2".
+    validations:
+      required: true
+  - type: input
+    id: mac-model
+    attributes:
+      label: Mac model
+      description: For example "MacBook Air M3".
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language Pasto runs in
+      options:
+        - English
+        - Spanish
+  - type: checkboxes
+    id: permissions
+    attributes:
+      label: Permissions granted to Pasto
+      description: System Settings › Privacy & Security. Tick the ones that are on.
+      options:
+        - label: Accessibility (pastes for you)
+        - label: Paste from Other Apps set to Allow (reads the clipboard without asking)
+        - label: Screen & System Audio Recording (only used by suggestions)
+  - type: dropdown
+    id: apple-intelligence
+    attributes:
+      label: Apple Intelligence
+      description: Only relevant for suggestions.
+      options:
+        - Not relevant to this problem
+        - Enabled
+        - Not enabled or not available on this Mac
+  - type: textarea
+    id: logs
+    attributes:
+      label: Diagnostics
+      description: |
+        Optional. *Help › Report a Problem…* can show you Pasto's diagnostics folder; its files never contain what
+        you copied (private values are written as `<private>`). Attach a file or paste the relevant lines.
+      render: text
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I am on the latest version of Pasto (*Check for Updates…* in its menu).
+          required: true
+        - label: I searched the existing issues and this one is new.
+          required: true
