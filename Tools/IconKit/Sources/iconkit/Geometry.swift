@@ -57,10 +57,6 @@ struct Blade: Sendable {
         self.lean = lean
         self.stiffness = stiffness
     }
-
-    func scaled(by s: CGFloat, around origin: CGPoint) -> Blade {
-        Blade(origin.x + (x - origin.x) * s, width: width * s, height: height * s, lean: lean * s, stiffness: stiffness)
-    }
 }
 
 /// The construction of a blade: a tapering ribbon around a curved spine.

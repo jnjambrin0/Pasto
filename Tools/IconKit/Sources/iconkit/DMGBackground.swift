@@ -187,7 +187,7 @@ enum DMGBackground {
 
     /// Deterministic tufts of blades rooted `sink` below a crest line: in each tuft the blades fan
     /// out from the middle, the tallest near the centre, all nudged by a light breeze to the right.
-    /// Returns each blade's outline and its lit half (the outside of its bend), as in the icon.
+    /// Returns each blade's outline and its lit half (the outside of its bend).
     private static func tufts(_ tufts: [(x: CGFloat, blades: Int, height: CGFloat)], line: [CGFloat],
                               sink: CGFloat) -> [(path: CGPath, fold: CGPath)] {
         let pattern: [CGFloat] = [0.62, 0.9, 1, 0.78, 0.55, 0.85]

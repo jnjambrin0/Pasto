@@ -1,9 +1,9 @@
 import CoreGraphics
 import Foundation
 
-// A deliberately small vector model. Every artwork in IconKit is a `Scene`: an ordered list of
-// layers, each a list of filled (or stroked) paths. The same scene is rasterised by `Rasterizer`
-// and serialised by `SVGWriter`, so the PNGs and the SVGs can never drift apart.
+// A deliberately small vector model for what IconKit draws itself (the menu bar glyph and the DMG
+// background): a `Scene` is an ordered list of layers, each a list of filled (or stroked) paths,
+// painted by `Rasterizer`.
 //
 // Coordinates are design units with the origin at the top-left corner and y growing downwards,
 // like a design tool. Transforms are baked into the paths when the scene is built.
@@ -36,28 +36,10 @@ struct RGBA: Hashable, Sendable {
         RGBA(red: red, green: green, blue: blue, alpha: alpha)
     }
 
-    /// Straight interpolation towards `other`; `t` = 0 is `self`.
-    func mixed(with other: RGBA, _ t: Double) -> RGBA {
-        RGBA(red: red + (other.red - red) * t, green: green + (other.green - green) * t,
-             blue: blue + (other.blue - blue) * t, alpha: alpha + (other.alpha - alpha) * t)
-    }
-
     var cgColor: CGColor {
         CGColor(srgbRed: red, green: green, blue: blue, alpha: alpha)
     }
 
-    /// `#RRGGBB`, without the alpha.
-    var hex: String {
-        func byte(_ value: Double) -> String {
-            String(format: "%02X", Int((min(max(value, 0), 1) * 255).rounded()))
-        }
-        return "#" + byte(red) + byte(green) + byte(blue)
-    }
-
-    /// `srgb:r,g,b,a` with five decimals, the notation Icon Composer documents use.
-    var iconComposerString: String {
-        String(format: "srgb:%.5f,%.5f,%.5f,%.5f", red, green, blue, alpha)
-    }
 }
 
 struct GradientStop: Sendable {
@@ -72,7 +54,7 @@ struct GradientStop: Sendable {
 
 enum Paint: @unchecked Sendable {
     case solid(RGBA)
-    /// Colours are padded beyond both ends, as in SVG's default `spreadMethod`.
+    /// Colours are padded beyond both ends.
     case linear(from: CGPoint, to: CGPoint, stops: [GradientStop])
     case radial(center: CGPoint, radius: CGFloat, stops: [GradientStop])
 
@@ -102,8 +84,6 @@ struct Item: @unchecked Sendable {
     var strokeWidth: CGFloat?
     /// Clips this item only.
     var clip: CGPath?
-    /// False draws hard pixel edges; only for shapes designed on a pixel grid at one exact scale.
-    var antialias = true
 }
 
 struct Layer: @unchecked Sendable {
@@ -112,7 +92,6 @@ struct Layer: @unchecked Sendable {
     var shadow: Shadow?
     /// Clips the layer and its shadow.
     var clip: CGPath?
-    var opacity: CGFloat = 1
 }
 
 struct Scene: Sendable {
@@ -138,25 +117,3 @@ extension CGPath {
     }
 }
 
-/// Rotation by `degrees` clockwise (in y-down space) around `pivot`.
-func rotationTransform(_ degrees: CGFloat, around pivot: CGPoint) -> CGAffineTransform {
-    CGAffineTransform(translationX: pivot.x, y: pivot.y)
-        .rotated(by: degrees * .pi / 180)
-        .translatedBy(x: -pivot.x, y: -pivot.y)
-}
-
-extension Paint {
-    func transformed(_ t: CGAffineTransform) -> Paint {
-        switch self {
-        case .solid:
-            return self
-        case let .linear(from, to, stops):
-            return .linear(from: from.applying(t), to: to.applying(t), stops: stops)
-        case let .radial(center, radius, stops):
-            // Only rotations, translations and uniform scales are used, so the radius scales by
-            // the length of a transformed unit vector.
-            let scale = hypot(t.a, t.b)
-            return .radial(center: center.applying(t), radius: radius * scale, stops: stops)
-        }
-    }
-}

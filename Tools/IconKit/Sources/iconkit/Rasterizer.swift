@@ -65,14 +65,13 @@ enum Rasterizer {
             context.addPath(clip)
             context.clip()
         }
-        context.setAlpha(layer.opacity)
         if let shadow = layer.shadow {
             // CoreGraphics measures shadows in device pixels, ignoring the transform; the bitmap is
             // y-up, so "down" is a negative offset.
             context.setShadow(offset: CGSize(width: 0, height: -shadow.dy * scale),
                               blur: shadow.blur * scale, color: shadow.color.cgColor)
         }
-        // A transparency layer makes the shadow (and the opacity) apply to the layer as a whole.
+        // A transparency layer makes the shadow apply to the layer as a whole.
         context.beginTransparencyLayer(auxiliaryInfo: nil)
         for item in layer.items {
             draw(item, in: context)
@@ -87,7 +86,6 @@ enum Rasterizer {
             context.addPath(clip)
             context.clip()
         }
-        context.setShouldAntialias(item.antialias)
         let shape = item.strokeWidth.map {
             item.path.copy(strokingWithWidth: $0, lineCap: .round, lineJoin: .round, miterLimit: 10)
         } ?? item.path

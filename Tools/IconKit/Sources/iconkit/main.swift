@@ -8,14 +8,15 @@ let usage = """
     usage: swift run --package-path Tools/IconKit iconkit <command> [--root <repo>] [--before <folder>]
 
     commands:
-      all             everything below except `draft`
-      app-icon        Pasto/Assets.xcassets/AppIcon.appiconset (16–1024 px, @1x and @2x)
-      icon-composer   Pasto/AppIcon.icon (Icon Composer document, Liquid Glass)
+      all             everything below
+      app-icon        Pasto/Assets.xcassets/AppIcon.appiconset (16–512 pt, @1x and @2x) from the artwork
       status-item     Pasto/Assets.xcassets/StatusItemIcon.imageset (18 pt template, @1x and @2x)
       dmg             Config/dmg-background.png and @2x (660 × 400 pt), over Config/dmg-texture.png if present
-      export          Design/icon/export (PNG, SVG and favicons for the web)
-      previews        docs/design/img (contact sheets; Icon Composer renditions need Xcode's ictool)
-      draft <folder>  quick renders of the app icon and a contact sheet, for iterating
+      export          Design/icon/export (PNG and favicons for the web) from the artwork
+      previews        docs/design/img (icon sizes, small sizes, menu bar glyph, DMG layout)
+
+    The app icon's only source is Design/icon/source/app-icon-artwork.png: a full-bleed square artwork,
+    1024 px or larger, with no rounded corners.
 
     DMG (scripts/release.sh):
       dmg-stage <folder>              background TIFF (1x + 2x) and .VolumeIcon.icns into the image's folder
@@ -42,13 +43,17 @@ struct Repository {
     var assetCatalog: URL { root.appendingPathComponent("Pasto/Assets.xcassets") }
     var appIconSet: URL { assetCatalog.appendingPathComponent("AppIcon.appiconset") }
     var statusImageSet: URL { assetCatalog.appendingPathComponent("StatusItemIcon.imageset") }
-    var iconComposerDocument: URL { root.appendingPathComponent("Pasto/AppIcon.icon") }
+    var iconArtwork: URL { root.appendingPathComponent("Design/icon/source/app-icon-artwork.png") }
     var config: URL { root.appendingPathComponent("Config") }
     var export: URL { root.appendingPathComponent("Design/icon/export") }
     var previews: URL { root.appendingPathComponent("docs/design/img") }
     var dmgTexture: URL { config.appendingPathComponent("dmg-texture.png") }
     var dmgBackground: URL { config.appendingPathComponent("dmg-background.png") }
     var dmgBackground2x: URL { config.appendingPathComponent("dmg-background@2x.png") }
+
+    func loadAppIcon() throws -> AppIcon {
+        try AppIcon(contentsOf: iconArtwork)
+    }
 
     /// The generated texture under the DMG background, when one has been imported.
     func loadDMGTexture() throws -> CGImage? {
@@ -74,10 +79,6 @@ func appIconFileName(points: Int, scale: Int) -> String {
     "icon_\(points)x\(points)\(scale == 1 ? "" : "@\(scale)x").png"
 }
 
-func renderAppIcon(pixels: Int) -> CGImage {
-    Rasterizer.render(IconArt.forPixelSize(pixels).classicScene(), pixels: pixels)
-}
-
 func writeJSON(_ object: Any, to url: URL) throws {
     let data = try JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes])
     try Output.ensureDirectory(url.deletingLastPathComponent())
@@ -85,20 +86,16 @@ func writeJSON(_ object: Any, to url: URL) throws {
 }
 
 func writeAppIconSet(_ repo: Repository) throws {
+    let icon = try repo.loadAppIcon()
     var images: [[String: String]] = []
     for slot in appIconSlots {
         let name = appIconFileName(points: slot.points, scale: slot.scale)
-        try Output.writePNG(renderAppIcon(pixels: slot.points * slot.scale), to: repo.appIconSet.appendingPathComponent(name))
+        try Output.writePNG(icon.image(points: slot.points, scale: slot.scale), to: repo.appIconSet.appendingPathComponent(name))
         images.append(["filename": name, "idiom": "mac", "scale": "\(slot.scale)x", "size": "\(slot.points)x\(slot.points)"])
     }
     try writeJSON(["images": images, "info": ["author": "xcode", "version": 1]],
                   to: repo.appIconSet.appendingPathComponent("Contents.json"))
     print("app-icon       \(appIconSlots.count) PNGs → \(repo.appIconSet.path)")
-}
-
-func writeIconComposer(_ repo: Repository) throws {
-    try IconComposer.write(IconArt.full, to: repo.iconComposerDocument)
-    print("icon-composer  → \(repo.iconComposerDocument.path)")
 }
 
 func writeStatusItem(_ repo: Repository) throws {
@@ -129,7 +126,7 @@ func stageDMG(_ repo: Repository, folder: URL) throws {
     guard CGFloat(background.0.width) == DMGBackground.size.width, CGFloat(background.0.height) == DMGBackground.size.height,
           background.1.width == background.0.width * 2, background.1.height == background.0.height * 2
     else { throw IconKitError("Config/dmg-background.png must be 660 × 400 and its @2x 1320 × 800: run `iconkit dmg`") }
-    try DMGWindow.stage(folder, background: background)
+    try DMGWindow.stage(folder, background: background, icon: repo.loadAppIcon())
     print("dmg-stage      \(DMGWindow.backgroundFolder)/\(DMGWindow.backgroundName) and \(DMGWindow.volumeIconName) → \(folder.path)")
 }
 
@@ -146,31 +143,32 @@ func inspectDMG(volume: URL, appName: String, preview: URL?) throws {
 }
 
 func writeExports(_ repo: Repository) throws {
-    let full = IconArt.full
-    try Output.writePNG(renderAppIcon(pixels: 1024), to: repo.export.appendingPathComponent("pasto-icon-1024.png"))
-    try Output.writePNG(renderAppIcon(pixels: 512), to: repo.export.appendingPathComponent("pasto-icon-512.png"))
-    try Output.write(SVGWriter().document(full.classicScene()), to: repo.export.appendingPathComponent("pasto-icon.svg"))
-
-    // Favicons fill their square with the tile: no margin, no shadow. The 180 px apple-touch-icon is
-    // an opaque square because iOS applies its own mask.
-    let favicons: [(pixels: Int, art: IconArt, shape: IconArt.TileShape)] = [
-        (32, .small, .flat), (180, full, .square), (512, full, .flat),
-    ]
-    for favicon in favicons {
-        let image = Rasterizer.render(favicon.art.classicScene(shape: favicon.shape), pixelWidth: favicon.pixels,
-                                      pixelHeight: favicon.pixels, crop: favicon.art.tileRect)
-        try Output.writePNG(image, to: repo.export.appendingPathComponent("favicon-\(favicon.pixels).png"))
-    }
-    let faviconSVG = SVGWriter(viewBox: full.tileRect, size: CGSize(width: 512, height: 512)).document(full.classicScene(shape: .flat))
-    try Output.write(faviconSVG, to: repo.export.appendingPathComponent("favicon.svg"))
+    let icon = try repo.loadAppIcon()
+    try Output.writePNG(icon.icon(pixels: 1024), to: repo.export.appendingPathComponent("pasto-icon-1024.png"))
+    try Output.writePNG(icon.icon(pixels: 512), to: repo.export.appendingPathComponent("pasto-icon-512.png"))
+    // Favicons fill their square with the tile: no margin, no shadow. Browsers show the 32 px one at
+    // 16 pt, so it has the 16 pt crop. The 180 px apple-touch-icon is an opaque square because iOS
+    // applies its own mask.
+    try Output.writePNG(icon.flatTile(pixels: 32, crop: AppIcon.tightCrop), to: repo.export.appendingPathComponent("favicon-32.png"))
+    try Output.writePNG(icon.square(pixels: 180), to: repo.export.appendingPathComponent("favicon-180.png"))
+    try Output.writePNG(icon.flatTile(pixels: 512), to: repo.export.appendingPathComponent("favicon-512.png"))
     print("export         → \(repo.export.path)")
 }
 
 func writePreviews(_ repo: Repository, before: URL?) throws {
-    let sizes = [256, 128, 64, 32, 16]
-    let after = sizes.map(renderAppIcon(pixels:))
+    let icon = try repo.loadAppIcon()
+    // Each size as the asset catalog has it at 1x: 64 px is 32 pt @2x.
+    let after = [icon.image(points: 256, scale: 1), icon.image(points: 128, scale: 1), icon.image(points: 32, scale: 2),
+                 icon.image(points: 32, scale: 1), icon.image(points: 16, scale: 1)]
     try Output.writePNG(Sheets.sizeSheet(rows: [after], zoomIndices: [3, 4], zoom: 6),
                         to: repo.previews.appendingPathComponent("icon-sizes.png"))
+
+    // The small sizes: the whole artwork scaled down (top) against what ships (bottom): 16 pt @1x,
+    // 16 pt @2x and 32 pt @1x.
+    let scaled = [icon.icon(pixels: 16), icon.icon(pixels: 32)]
+    let shipped = [icon.image(points: 16, scale: 1), icon.image(points: 16, scale: 2), icon.image(points: 32, scale: 1)]
+    try Output.writePNG(Sheets.sizeSheet(rows: [scaled, shipped], zoomIndices: [0, 1, 2], zoom: 8),
+                        to: repo.previews.appendingPathComponent("icon-small-sizes.png"))
 
     if let before {
         let files = ["icon_128x128@2x.png", "icon_128x128.png", "icon_32x32@2x.png", "icon_32x32.png", "icon_16x16.png"]
@@ -180,45 +178,9 @@ func writePreviews(_ repo: Repository, before: URL?) throws {
     }
 
     try Output.writePNG(StatusGlyph.sheet(), to: repo.previews.appendingPathComponent("status-item.png"))
-    try Output.writePNG(DMGBackground.layoutPreview(icon: renderAppIcon(pixels: 256), texture: try repo.loadDMGTexture()),
+    try Output.writePNG(DMGBackground.layoutPreview(icon: icon.icon(pixels: 256), texture: try repo.loadDMGTexture()),
                         to: repo.previews.appendingPathComponent("dmg-layout.png"))
-
-    // Icon Composer renditions, rendered by Apple's own renderer from the committed document.
-    let temporary = FileManager.default.temporaryDirectory.appendingPathComponent("iconkit-\(ProcessInfo.processInfo.processIdentifier)")
-    defer { try? FileManager.default.removeItem(at: temporary) }
-    do {
-        var renders: [String: CGImage] = [:]
-        for rendition in IconComposer.renditions {
-            let file = temporary.appendingPathComponent("\(rendition).png")
-            try IconComposer.render(repo.iconComposerDocument, rendition: rendition, pixels: 256, to: file)
-            renders[rendition] = try Output.readPNG(file)
-        }
-        let light = Sheets.strip(["Default", "TintedLight", "ClearLight"].compactMap { renders[$0] }, side: 256, background: Sheets.light)
-        let dark = Sheets.strip(["Dark", "TintedDark", "ClearDark"].compactMap { renders[$0] }, side: 256, background: Sheets.dark)
-        try Output.writePNG(Sheets.stack([light, dark], background: .white),
-                            to: repo.previews.appendingPathComponent("icon-composer-renditions.png"))
-    } catch {
-        print("previews       skipped the Icon Composer renditions: \(error)")
-    }
     print("previews       → \(repo.previews.path)")
-}
-
-func writeDraft(to folder: URL) throws {
-    let sizes = [1024, 256, 128, 64, 32, 16]
-    var images: [CGImage] = []
-    for size in sizes {
-        let image = renderAppIcon(pixels: size)
-        images.append(image)
-        try Output.writePNG(image, to: folder.appendingPathComponent("icon-\(size).png"))
-    }
-    try Output.writePNG(Sheets.sizeSheet(rows: [Array(images.dropFirst())], zoomIndices: [3, 4], zoom: 6),
-                        to: folder.appendingPathComponent("sheet.png"))
-    try Output.writePNG(StatusGlyph.sheet(), to: folder.appendingPathComponent("status-item.png"))
-    let texture = try Repository.located().loadDMGTexture()
-    try Output.writePNG(DMGBackground.render(scale: 2, texture: texture), to: folder.appendingPathComponent("dmg@2x.png"))
-    try Output.writePNG(DMGBackground.layoutPreview(icon: renderAppIcon(pixels: 256), texture: texture),
-                        to: folder.appendingPathComponent("dmg-layout.png"))
-    print("draft          → \(folder.path)")
 }
 
 // MARK: - Entry point
@@ -260,19 +222,15 @@ do {
     switch arguments.first {
     case "all":
         try writeAppIconSet(repository)
-        try writeIconComposer(repository)
         try writeStatusItem(repository)
         try writeDMGBackground(repository)
         try writeExports(repository)
         try writePreviews(repository, before: before)
     case "app-icon": try writeAppIconSet(repository)
-    case "icon-composer": try writeIconComposer(repository)
     case "status-item": try writeStatusItem(repository)
     case "dmg": try writeDMGBackground(repository)
     case "export": try writeExports(repository)
     case "previews": try writePreviews(repository, before: before)
-    case "draft":
-        try writeDraft(to: argument(1, "a folder"))
     case "dmg-stage":
         try stageDMG(repository, folder: argument(1, "the folder that becomes the image"))
     case "dmg-window":

@@ -31,11 +31,11 @@ enum DMGWindow {
 
     /// Puts the background (both scales in one TIFF, which is how Finder takes a Retina picture) and
     /// the volume icon into the folder that becomes the image.
-    static func stage(_ folder: URL, background: (CGImage, CGImage)) throws {
+    static func stage(_ folder: URL, background: (CGImage, CGImage), icon: AppIcon) throws {
         let backgroundURL = folder.appendingPathComponent(backgroundFolder).appendingPathComponent(backgroundName)
         try Output.ensureDirectory(backgroundURL.deletingLastPathComponent())
         try writeTIFF([background.0, background.1], scales: [1, 2], to: backgroundURL)
-        try VolumeIcon.write(to: folder.appendingPathComponent(volumeIconName))
+        try VolumeIcon.write(icon, to: folder.appendingPathComponent(volumeIconName))
     }
 
     static func writeTIFF(_ images: [CGImage], scales: [Int], to url: URL) throws {
@@ -349,16 +349,16 @@ enum DMGWindow {
     }
 }
 
-/// The DMG volume's own icon: Pasto's icon, drawn from the same vectors at every size.
+/// The DMG volume's own icon: Pasto's icon, the same renditions as the app's at every size.
 enum VolumeIcon {
-    static func write(to url: URL) throws {
+    static func write(_ icon: AppIcon, to url: URL) throws {
         let fileManager = FileManager.default
         let iconset = fileManager.temporaryDirectory.appendingPathComponent("pasto-volume-\(ProcessInfo.processInfo.processIdentifier).iconset")
         try? fileManager.removeItem(at: iconset)
         try Output.ensureDirectory(iconset)
         defer { try? fileManager.removeItem(at: iconset) }
         for slot in appIconSlots {
-            try Output.writePNG(renderAppIcon(pixels: slot.points * slot.scale),
+            try Output.writePNG(icon.image(points: slot.points, scale: slot.scale),
                                 to: iconset.appendingPathComponent(appIconFileName(points: slot.points, scale: slot.scale)))
         }
         let process = Process()
