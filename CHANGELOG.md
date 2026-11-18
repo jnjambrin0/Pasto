@@ -20,15 +20,12 @@ embeds in the update feed. This file collects the same notes, grouped by kind of
   shows the front card and the grass up close, so it stays recognisable.
 - **A new menu bar icon**: Pasto's tile with two leaves cut out of it, sharp on every display and sized like the
   system's own icons beside it. The Stack panel's title shows it too.
+- *Help › Report a Problem…* writes to hello@jnjambrino.com.
 
 ### Fixed
 
 - **The Stack stays on screen**: with three or more items the panel could grow past the bottom of the screen and
   hide its last rows. It now moves up as it grows.
-
-### Changed
-
-- *Help › Report a Problem…* writes to hello@jnjambrino.com.
 
 ## [1.0.3] - 2026-11-18
 
