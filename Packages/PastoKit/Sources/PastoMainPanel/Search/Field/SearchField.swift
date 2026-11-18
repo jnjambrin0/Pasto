@@ -6,7 +6,7 @@ import PastoUI
 ///
 /// It shows what it is told and reports what the user does; what an edit means is decided by
 /// whoever handles `onTextShouldChange`.
-final class SearchField: LayerBackedView, NSTextViewDelegate, NSTextStorageDelegate {
+final class SearchField: LayerBackedView, NSTextViewDelegate {
     private static let undoKeyEquivalent = KeyEquivalent("z", modifiers: .command)
     private static let redoKeyEquivalent = KeyEquivalent("z", modifiers: [.command, .shift])
     private static let bounceAnimationKey = "filtersBounce"
@@ -71,7 +71,6 @@ final class SearchField: LayerBackedView, NSTextViewDelegate, NSTextStorageDeleg
         addSubview(scrollView)
 
         textView.delegate = self
-        textView.textStorage?.delegate = self
         textView.setAccessibilityElement(false)
 
         clearButton.target = self
@@ -96,7 +95,15 @@ final class SearchField: LayerBackedView, NSTextViewDelegate, NSTextStorageDeleg
 
     /// Replaces the content and the selection, scrolling the selection into view.
     func show(_ text: NSAttributedString, selection: NSRange) {
-        textView.textStorage?.setAttributedString(text)
+        guard let storage = textView.textStorage else { return }
+        // One transaction, so that the layout hears of the whole replacement at once and never
+        // lays out a text that is half gone.
+        if let content = textView.textContentStorage {
+            content.performEditingTransaction { storage.setAttributedString(text) }
+        } else {
+            storage.setAttributedString(text)
+        }
+        contentDidChange()
         textView.setSelectedRange(selection)
         textView.scrollRangeToVisible(selection)
     }
@@ -343,18 +350,22 @@ final class SearchField: LayerBackedView, NSTextViewDelegate, NSTextStorageDeleg
         focusDidLeavePart()
     }
 
-    // MARK: - NSTextStorageDelegate
+    func textDidChange(_ notification: Notification) {
+        contentDidChange()
+    }
 
-    func textStorage(
-        _ textStorage: NSTextStorage,
-        didProcessEditing editedMask: NSTextStorageEditActions,
-        range editedRange: NSRange,
-        changeInLength delta: Int
-    ) {
+    /// Brings the field's own parts up to date with the text: after the user's edit is complete
+    /// (`textDidChange`) or after `show`. Never from inside the text storage's editing: changing
+    /// the text container there makes the layout run against a text it has only half heard about,
+    /// which leaves the old text on screen and, at the next layout, raises a range exception.
+    private func contentDidChange() {
         updateClearButton()
         textView.applyTextAttributes()
         // A token is as tall as the input area; plain text is centred in it by an inset.
-        let hasTokens = textStorage.containsAttachments
-        textView.textContainerInset = NSSize(width: 0, height: hasTokens ? 0 : SearchMetrics.Field.textVerticalInset)
+        let hasTokens = textView.textStorage?.containsAttachments ?? false
+        let inset = NSSize(width: 0, height: hasTokens ? 0 : SearchMetrics.Field.textVerticalInset)
+        if textView.textContainerInset != inset {
+            textView.textContainerInset = inset
+        }
     }
 }
