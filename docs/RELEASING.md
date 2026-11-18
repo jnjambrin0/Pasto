@@ -96,7 +96,7 @@ Pasto follows [Semantic Versioning](https://semver.org): `x.y.z`.
    changes to [CHANGELOG.md](../CHANGELOG.md), grouped by kind.
 3. Commit. A version meant for publishing is built from a clean tree: the script records it, and refuses to
    notarise a build or make its appcast otherwise.
-4. The build number (`CFBundleVersion`) is the number of commits in `HEAD` (`git rev-list --count HEAD`), so it
+4. The build number (`CFBundleVersion`) is the number of commits in `HEAD` plus 1000 (`git rev-list --count HEAD`; the offset keeps it above the builds published before the history was restarted), so it
    grows by itself. To force another, set `PASTO_BUILD_NUMBER=<n>`. It must be greater than the newest build in
    the appcast, or Sparkle will not offer the version; the script checks this.
 

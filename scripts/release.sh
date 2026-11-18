@@ -15,7 +15,7 @@
 #   PASTO_TEAM_ID          Apple Developer team whose Developer ID signs the release (default:
 #                          DZ97PSDX9S; must match DEVELOPMENT_TEAM in Pasto.xcodeproj and teamID
 #                          in Config/ExportOptions.plist)
-#   PASTO_BUILD_NUMBER     CFBundleVersion of the build (default: number of commits in HEAD)
+#   PASTO_BUILD_NUMBER     CFBundleVersion of the build (default: number of commits in HEAD + 1000)
 #   PASTO_NOTARY_PROFILE   notarytool keychain profile (default: pasto)
 #   PASTO_SPARKLE_ACCOUNT  keychain account of the Sparkle EdDSA key (default: ed25519)
 #   PASTO_SPARKLE_BIN      folder with Sparkle's generate_appcast and generate_keys (default: found
