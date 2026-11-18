@@ -272,7 +272,9 @@ verify_dmg() {
 # MARK: - Steps
 
 step_archive() {
-  local build="${PASTO_BUILD_NUMBER:-$(git rev-list --count HEAD)}"
+  # The number of commits, above the builds published before the history was restarted (441 was
+  # the last one): Sparkle only offers a build whose number is higher than the installed one.
+  local build="${PASTO_BUILD_NUMBER:-$(( $(git rev-list --count HEAD) + 1000 ))}"
   [[ "$build" =~ ^[1-9][0-9]*$ ]] || fail "the build number must be a positive integer, not '$build'"
   local latest
   latest="$(latest_published_build)"
