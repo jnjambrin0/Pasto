@@ -137,10 +137,6 @@ struct BladeOutline {
     }
 }
 
-func bladePath(_ blade: Blade, baseY: CGFloat) -> CGPath {
-    BladeOutline(blade, baseY: baseY).path
-}
-
 /// An arrow along a gentle arc from `start` to `end`: the shaft and an open chevron head, both
 /// meant to be stroked with round caps.
 func arrowPaths(from start: CGPoint, to end: CGPoint, sag: CGFloat, headLength: CGFloat) -> (shaft: CGPath, head: CGPath) {

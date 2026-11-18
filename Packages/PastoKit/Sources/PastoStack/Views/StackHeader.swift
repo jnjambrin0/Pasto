@@ -20,8 +20,8 @@ struct StackHeader: View {
 
     private var title: some View {
         HStack(spacing: StackMetrics.Header.titleSpacing) {
-            // A menu bar glyph leaves a margin around its drawing; it is drawn larger than the
-            // room it takes so that the drawing itself fills that room.
+            // The menu bar glyph leaves a margin around its tile: drawn at its own size, the tile
+            // fills the room the title gives it and the margin overflows it.
             Image(Self.titleGlyphName, bundle: .main)
                 .renderingMode(.template)
                 .resizable()

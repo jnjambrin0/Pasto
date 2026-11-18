@@ -99,6 +99,12 @@ func writeAppIconSet(_ repo: Repository) throws {
 }
 
 func writeStatusItem(_ repo: Repository) throws {
+    for scale in [1, 2] {
+        let hairlines = StatusGlyph.hairlines(in: StatusGlyph.render(scale: scale))
+        if !hairlines.isEmpty {
+            throw IconKitError("the menu bar glyph has hairlines at @\(scale)x: \(hairlines.joined(separator: "; "))")
+        }
+    }
     try Output.writePNG(StatusGlyph.render(scale: 1), to: repo.statusImageSet.appendingPathComponent("StatusItemIcon.png"))
     try Output.writePNG(StatusGlyph.render(scale: 2), to: repo.statusImageSet.appendingPathComponent("StatusItemIcon@2x.png"))
     try writeJSON([

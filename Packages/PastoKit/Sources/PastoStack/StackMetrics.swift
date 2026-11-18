@@ -25,9 +25,10 @@ nonisolated enum StackMetrics {
         static let padding: CGFloat = 12
         static let titleSpacing: CGFloat = 8
         static let titleHorizontalPadding: CGFloat = 4
-        /// The title's glyph is drawn larger than the room it takes, which its own margins absorb.
+        /// The title's glyph is the menu bar glyph at its own size, 18 pt, so both scales draw pixel
+        /// for pixel; its tile is 14 pt, the room it takes, and its margins overflow that room.
         static let titleGlyphFrameSide: CGFloat = 14
-        static let titleGlyphSide: CGFloat = 20.5
+        static let titleGlyphSide: CGFloat = 18
         static let buttonSpacing: CGFloat = 4
         /// Between the "…" button and the menu that hangs from it.
         static let menuGap: CGFloat = 4
