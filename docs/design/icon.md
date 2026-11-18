@@ -1,8 +1,9 @@
 # Pasto's icon
 
-The app icon, the menu bar glyph, the disk image background and window, and the web exports. All of them are
-written by one generator, `Tools/IconKit`, deterministically: no file listed here is edited by hand. The app icon has
-a single source, a painted artwork; the menu bar glyph and the disk image background are drawn in code.
+The app icon, the mark on its own, the menu bar glyph, the disk image background and window, and the web exports.
+All of them are written by one generator, `Tools/IconKit`, deterministically: no file listed here is edited by hand.
+The app icon and the mark have a single source, the logo; the menu bar glyph and the disk image background are
+drawn in code.
 
 ![The icon at 256, 128, 64, 32 and 16 px, on light and dark](img/icon-sizes.png)
 
@@ -10,21 +11,41 @@ a single source, a painted artwork; the menu bar glyph and the disk image backgr
 
 ## Concept
 
-*Pasto* is Spanish for grass. The icon is **three frosted clipboard cards rising from the grass** on a green field:
-the front card, white with a green title line and two lines of text, is the clip; the two cards behind it, tinted
-green, stand for the history. The grass in front of them bends and catches the light. There are no letters or
-arrows.
+*Pasto* is Spanish for grass. The mark is **two leaves of grass**, a large one and a smaller one in its lee, rising
+to the right, green from a deep tone at the foot to lime at the tip. There are no letters, cards or arrows. The
+**app icon** is the mark on a white tile.
 
-The **menu bar glyph** keeps the tile and the grass: the app's rounded tile, filled, with a large leaf and a smaller
-one cut out of it. The Stack panel's title shows the same glyph.
+The **menu bar glyph** is the same picture in one colour and in reverse: the app's rounded tile, filled, with a
+large leaf and a smaller one cut out of it. The Stack panel's title shows the same glyph.
 
-## App icon
+## The mark
 
 ### Source
 
-`Design/icon/source/app-icon-artwork.png`: a full-bleed square (1254 × 1254) with **no rounded corners and no
-transparency**; IconKit adds the tile's shape, margin and shadow. It refuses an artwork that is not square, is
-smaller than 1024 px or has transparent pixels. To change the icon, replace that file and run `iconkit all`.
+`Design/icon/source/logo.png`: the mark painted on a **plain white square** (1254 × 1254), with no transparency.
+IconKit refuses a logo that is not square, is smaller than 1024 px, has transparent pixels or whose border is not
+plain and light. To change the icon, replace that file and run `iconkit all`.
+
+### Lifting the mark off the white
+
+Everything else needs the mark alone, so that it can sit on the tile at any size, on a transparent favicon or on a
+dark page (`Mark.swift`). Subtracting the white is not enough: the pixel or two along each edge are a blend of
+leaf and background and would keep a pale fringe on anything darker than white. Each of those pixels is split into
+the colour of the solid leaf next to it and the share of the pixel the leaf covers, which becomes its alpha.
+
+### The outline
+
+The edge of the mark is also traced into curves (`MarkOutline.swift`): followed between pixels at half coverage,
+cut at each leaf's tip and foot, and each stretch fitted with as few cubic curves as stay within 0.9 px of it. The
+two leaves come out as about twenty curves. That outline is what the SVG exports are written from; `iconkit all`
+fails if the logo does not trace into exactly two shapes with two corners each.
+
+![The mark lifted off the logo, its traced outline with the gradient, and the outline in one colour](img/mark.png)
+
+*On a light and a dark strip: the mark as a bitmap, the traced outline filled with each leaf's gradient, and the
+outline in one colour.*
+
+## App icon
 
 ### Construction
 
@@ -32,35 +53,36 @@ smaller than 1024 px or has transparent pixels. To change the icon, replace that
 |---|---|
 | Grid | 1024 canvas, **824 tile centred** (100 of margin for the shadow), like every macOS icon |
 | Tile corners | continuous (*squircle*), radius **214** on the 824 tile: measured on the system's own icons on macOS 27, whose mask at 1024 px matches this shape to within the anti-aliasing |
+| Tile surface | white (`#FFFFFF`) at the top to `#ECF0E9` at the bottom: enough to read as a surface beside a white window |
 | Shadow | black at 30 %, 10 down, blur 20 (scaled with the icon) |
 | Margin at each size | 100/1024 of the side, rounded down to whole pixels so the tile's edges are crisp: 1 px at 16, 3 px at 32 (as the system's icons), 6 at 64, 12 at 128 |
+| Mark | 68 % of the tile's side tall at 128 px and up; larger on the small renditions (below) |
 
-Every rendition is drawn from the artwork at its own size, never by scaling another rendition down. The artwork is
+Every rendition is drawn from the mark at its own size, never by scaling another rendition down. The mark is
 resampled by halving it until it is within twice the target, so the large reductions do not alias.
+
+**Optical centre.** The leaves are broad at the foot and come to a point at the top, so their weight sits 7.8 % of
+the mark's height below the middle of its bounding box; centred by its box, the mark looks as if it had slipped
+down. It is moved 40 % of the way towards having its weight in the middle (`AppIcon.opticalShare`), about 3 % of
+its height.
 
 ### Small sizes
 
-Scaled down whole, the artwork stops reading at 16 pt: the cards turn into a pale smudge in the middle of the tile.
-So the smallest slots show a crop of the artwork instead:
+The smaller the icon, the more of the tile the mark takes, so that the two leaves stay apart:
 
-| Slot | Pixels | What it shows |
-|---|---|---|
-| 16 pt @1x and @2x | 16, 32 | `AppIcon.tightCrop`: 62 % of the artwork from (25 %, 25 %), centred on the front card and the grass. A white card with its green title line, in the grass |
-| 32 pt @1x | 32 | `AppIcon.stackCrop`: 70 % from (20 %, 22 %), which keeps the stack of cards behind the front one |
-| 32 pt @2x and larger | 64 – 1024 | the whole artwork |
-
-![The small sizes: the whole artwork scaled down (top) and what ships (bottom)](img/icon-small-sizes.png)
-
-*Top: the whole artwork at 16 and 32 px. Bottom: what ships at 16 pt @1x, 16 pt @2x and 32 pt @1x. Each one at
-actual size, then magnified ×8.*
+| Rendition | Mark height, share of the tile |
+|---|---|
+| 16 px | 80 % |
+| 32 px | 76 % |
+| 64 px | 72 % |
+| 128 px and larger | 68 % |
 
 ### What goes into the bundle
 
 `Pasto/Assets.xcassets/AppIcon.appiconset` (`ASSETCATALOG_COMPILER_APPICON_NAME` is `AppIcon`): `actool` compiles its
-ten PNG files into `Assets.car` and `AppIcon.icns` as they are, so the small sizes keep their crops (the 16 px image
-of the built `AppIcon.icns` is identical to `icon_16x16.png`). It is a classic icon set, not a layered `.icon`
-document, so the system shows the icon as drawn, without tinted and clear appearances. Because the tile has the system's shape, Finder draws
-it without adding a frame.
+ten PNG files into `Assets.car` and `AppIcon.icns` as they are. It is a classic icon set, not a layered `.icon`
+document, so the system shows the icon as drawn, without tinted and clear appearances. Because the tile has the
+system's shape, Finder draws it without adding a frame.
 
 About, the welcome window and the permission windows use `NSApp.applicationIconImage`, which reads the icon from the
 bundle (`PastoApp/AppIconImage.swift`).
@@ -70,9 +92,12 @@ bundle (`PastoApp/AppIconImage.swift`).
 | File | What it is |
 |---|---|
 | `pasto-icon-1024.png`, `pasto-icon-512.png` | the icon with its margin and shadow (the README shows the 512 one) |
-| `favicon-32.png` | the tile filling the square, no shadow, from the 16 pt crop: browsers show it at 16 pt |
-| `favicon-180.png` | `apple-touch-icon`: the whole artwork as an opaque square (iOS applies its own mask) |
+| `favicon-32.png` | the tile filling the square, no shadow: browsers show it at 16 pt |
+| `favicon-180.png` | `apple-touch-icon`: the tile as an opaque square with a smaller mark (iOS applies its own mask) |
 | `favicon-512.png` | the tile filling the square, continuous corners, no shadow |
+| `pasto-mark-1024.png` | the mark alone on a transparent square |
+| `pasto-mark.svg` | the traced outline, each leaf filled with a gradient of six colours measured along it from foot to tip |
+| `pasto-mark-mono.svg` | the traced outline in `currentColor`, for a glyph that takes the text's colour |
 
 ## Menu bar glyph (`StatusItemIcon.imageset`)
 
@@ -100,7 +125,7 @@ the leaf's height and lean how far its tip leans right.
 - At 1x, every row and column has at least one fully solid pixel between the two holes, and between each hole and the
   tile's edge: no hairline of half-covered pixels is left anywhere. `iconkit status-item` checks this at both scales
   and refuses to write a glyph that fails it.
-- The tile is centred in the box; the leaves sit in its lower right, rising to the upper right like the grass in the
+- The tile is centred in the box; the leaves sit in its lower right, rising to the upper right like the leaves of the
   app icon.
 - **Weight.** 14 pt is the size of the filled squares SF Symbols draw at 15 pt medium (`app.fill`, `square.fill`);
   with the leaves cut out, the glyph covers about 136 pt², between the system's outlined symbols at that size
@@ -175,8 +200,8 @@ background), `export` (`Design/icon/export/`) and `previews` (the pictures in `d
 `dmg-window.png`, which `scripts/release.sh` draws from the built disk image). `previews --before <.appiconset folder>`
 also writes a before/after comparison of the icon sizes.
 
-To change the icon, replace the artwork; to change which part of it the small sizes show, `AppIcon.tightCrop` and
-`AppIcon.stackCrop` in `Tools/IconKit/Sources/iconkit/AppIcon.swift`. To change the glyph, `StatusGlyph.tile` and
+To change the icon, replace the logo; to change how much of the tile the mark takes at each size,
+`AppIcon.markHeight` in `Tools/IconKit/Sources/iconkit/AppIcon.swift`. To change the glyph, `StatusGlyph.tile` and
 `StatusGlyph.leaves`. After regenerating, look at `docs/design/img/`.
 
 ## How it is checked

@@ -1,7 +1,7 @@
 // swift-tools-version: 6.2
 import PackageDescription
 
-// Writes Pasto's visual identity: the app icon set and the web exports from the painted artwork in
+// Writes Pasto's visual identity: the app icon set and the web exports from the logo in
 // Design/icon/source, the menu bar glyph, and the DMG window background and layout. Run it with
 // `swift run --package-path Tools/IconKit iconkit --help`.
 

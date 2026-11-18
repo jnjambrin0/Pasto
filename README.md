@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Design/icon/export/pasto-icon-512.png" width="128" height="128" alt="Pasto's icon: three clipboard cards growing from a meadow">
+  <img src="Design/icon/export/pasto-icon-512.png" width="128" height="128" alt="Pasto's icon: two green leaves of grass on a white tile">
 </p>
 
 <h1 align="center">Pasto</h1>
@@ -176,7 +176,7 @@ Packages/PastoKit/    The app's code: 17 modules and their unit tests
 Config/               Info.plist keys, release settings, export options, disk image artwork
 scripts/              build, run, test, release and illustration import
 Tools/                Developer tools: benchmarks, UI probe, card gallery, icon and sound generators
-Design/               The icon's source artwork and exports, and the source artwork of the illustrations
+Design/               The logo and the icon's exports, and the source artwork of the illustrations
 docs/                 Architecture, development, releasing, privacy, design notes and release notes
 ```
 

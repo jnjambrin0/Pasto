@@ -1,7 +1,7 @@
 # IconKit
 
-Generates Pasto's visual identity: the app icon set and the web exports, from the painted artwork in
-`Design/icon/source/app-icon-artwork.png` (its only source); the menu bar glyph, drawn in code (the app's tile with
+Generates Pasto's visual identity: the app icon set and the web exports, from the logo in
+`Design/icon/source/logo.png` (their only source); the menu bar glyph, drawn in code (the app's tile with
 two leaves cut out of it); and the DMG window background and layout. Only CoreGraphics, ImageIO and AppKit; no
 other images or fonts. Output is deterministic: running it twice leaves the working tree unchanged.
 
@@ -16,11 +16,11 @@ swift run --package-path Tools/IconKit iconkit --help
 
 | Command | Destination |
 |---|---|
-| `app-icon` | `Pasto/Assets.xcassets/AppIcon.appiconset/` (16–512 pt, @1x and @2x, and its `Contents.json`), from the artwork |
+| `app-icon` | `Pasto/Assets.xcassets/AppIcon.appiconset/` (16–512 pt, @1x and @2x, and its `Contents.json`), from the logo |
 | `status-item` | `Pasto/Assets.xcassets/StatusItemIcon.imageset/` (18 pt template, @1x and @2x); refuses a glyph with hairlines |
 | `dmg` | `Config/dmg-background.png` and `@2x` (660 × 400 pt), over `Config/dmg-texture.png` if present |
-| `export` | `Design/icon/export/` (the icon at 1024 and 512 px, favicons 32/180/512), from the artwork |
-| `previews` | `docs/design/img/` (icon sizes, small sizes, the menu bar glyph beside SF Symbols, DMG layout) |
+| `export` | `Design/icon/export/` (the icon at 1024 and 512 px, favicons 32/180/512, the mark alone as PNG and SVG), from the logo |
+| `previews` | `docs/design/img/` (icon sizes, the mark and its traced outline, the menu bar glyph beside SF Symbols, DMG layout) |
 
 `previews --before <.appiconset folder>` also writes a before/after comparison.
 
@@ -36,9 +36,11 @@ Commands used by the scripts (they write nothing in the repository except where 
 
 ## How it is built
 
-- `AppIcon.swift`: the app icon from the artwork: the macOS grid (824 tile in 1024, continuous corners, shadow),
-  each size drawn at its own pixel size with the tile on whole pixels, and the crops the 16 pt and 32 pt @1x sizes
-  show instead of the whole picture.
+- `Mark.swift`: the mark lifted off the logo's white background, with a true alpha along its edges.
+- `MarkOutline.swift`: the mark's edge traced into cubic curves, each leaf's gradient, and the SVG exports.
+- `AppIcon.swift`: the app icon: the macOS grid (824 tile in 1024, continuous corners, shadow), the white tile, and
+  the mark on it, optically centred and larger on the small sizes; each size drawn at its own pixel size with the
+  tile on whole pixels.
 - `StatusGlyph.swift`: the menu bar glyph's geometry, its hairline check and its review sheet beside SF Symbols.
 - `Scene.swift`, `Rasterizer.swift`, `Geometry.swift`: a minimal vector model (layers of paths with a solid or
   gradient fill and a per-layer shadow) painted with CoreGraphics, continuous rounded rectangles, and the blades of

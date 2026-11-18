@@ -240,7 +240,7 @@ measuring tools in release mode: debug numbers are meaningless.
 | [`StressKit`](../Tools/StressKit/README.md) | Builds a store the size of a year of heavy use (mixed text, images, links, files and colours, items on pinboards) and measures opening, browsing, retention and erasing on it | `cd Tools/StressKit && swift run -c release pastostress run --count 100000 --work /tmp/pastostress` | No: it works on stores in the folder you give it, each scenario on a clone |
 | [`CardGallery`](../Tools/CardGallery/README.md) | Renders sample cards off screen to PNG, for every size class, appearance and state, to review card design without running the app | `cd Tools/CardGallery && swift run CardGallery --out /tmp/cards` | No |
 | [`ProbeKit`](../Tools/ProbeKit/README.md) | `pastoprobe`, a command-line probe of a running app: window geometry over time, accessibility trees and diffs, menus, screenshots, frame recordings and traces, pixel and colour analysis, image diffs, synthetic keys, clicks, drags and scrolls, pasteboard inspection. `ProbeTarget` is a small app to paste into | `cd Tools/ProbeKit && swift build -c release && .build/release/pastoprobe help` | Yes: it uses the terminal's Accessibility and Screen Recording permissions (exit code 2 when one is missing), and `seed`, `pb-dump` and `pb-watch` write or read your real clipboard. `--app pasto` targets the development build, `--app pasto-release` an installed release |
-| [`IconKit`](../Tools/IconKit/README.md) | Generates the app icon set and the web exports from the icon's artwork, the menu bar glyph, and the disk image background and window; imports painted illustrations; used by `scripts/release.sh` for the disk image | `swift run --package-path Tools/IconKit iconkit --help` | No; it writes into the repository (see below) |
+| [`IconKit`](../Tools/IconKit/README.md) | Generates the app icon set and the web exports from the logo, the menu bar glyph, and the disk image background and window; imports painted illustrations; used by `scripts/release.sh` for the disk image | `swift run --package-path Tools/IconKit iconkit --help` | No; it writes into the repository (see below) |
 | [`SoundKit`](../Tools/SoundKit/README.md) | Synthesises Pasto's copy and paste sounds | `swift Tools/SoundKit/generate-sounds.swift` (writes `Pasto/Sounds/PastoCopy.aiff` and `PastoPaste.aiff`) | No |
 
 There are no fixed performance budgets in the repository; these tools measure wall time, main-thread CPU, memory
@@ -250,8 +250,8 @@ There are no fixed performance budgets in the repository; these tools measure wa
 
 Nothing visual is edited by hand:
 
-- **Icon, menu bar glyph, disk image background, web exports**: the app icon's only source is the painted artwork
-  `Design/icon/source/app-icon-artwork.png`. `swift run --package-path Tools/IconKit iconkit all` regenerates
+- **Icon, menu bar glyph, disk image background, web exports**: the app icon's only source is the logo,
+  `Design/icon/source/logo.png`. `swift run --package-path Tools/IconKit iconkit all` regenerates
   `Pasto/Assets.xcassets/AppIcon.appiconset` and `Design/icon/export/` from it, draws the `StatusItemIcon` image set
   and `Config/dmg-background*.png`, and writes the previews in `docs/design/img/`. The output is deterministic.
   Design and construction: [design/icon.md](design/icon.md).

@@ -1,7 +1,7 @@
 import CoreGraphics
 import Foundation
 
-// iconkit: writes every piece of Pasto's visual identity, from the app icon's artwork and from the
+// iconkit: writes every piece of Pasto's visual identity, from the logo and from the
 // descriptions in this package. Output is deterministic: running it twice leaves the working tree
 // unchanged.
 
@@ -10,14 +10,14 @@ let usage = """
 
     commands:
       all             everything below
-      app-icon        Pasto/Assets.xcassets/AppIcon.appiconset (16–512 pt, @1x and @2x) from the artwork
+      app-icon        Pasto/Assets.xcassets/AppIcon.appiconset (16–512 pt, @1x and @2x) from the logo
       status-item     Pasto/Assets.xcassets/StatusItemIcon.imageset (18 pt template, @1x and @2x)
       dmg             Config/dmg-background.png and @2x (660 × 400 pt), over Config/dmg-texture.png if present
-      export          Design/icon/export (PNG and favicons for the web) from the artwork
-      previews        docs/design/img (icon sizes, small sizes, menu bar glyph, DMG layout)
+      export          Design/icon/export (icon, favicons, the mark alone as PNG and SVG) from the logo
+      previews        docs/design/img (icon sizes, the mark, menu bar glyph, DMG layout)
 
-    The app icon's only source is Design/icon/source/app-icon-artwork.png: a full-bleed square artwork,
-    1024 px or larger, with no rounded corners.
+    The app icon's only source is Design/icon/source/logo.png: the mark on a plain white square,
+    1024 px or larger.
 
     DMG (scripts/release.sh):
       dmg-stage <folder>              background TIFF (1x + 2x) and .VolumeIcon.icns into the image's folder
@@ -44,7 +44,7 @@ struct Repository {
     var assetCatalog: URL { root.appendingPathComponent("Pasto/Assets.xcassets") }
     var appIconSet: URL { assetCatalog.appendingPathComponent("AppIcon.appiconset") }
     var statusImageSet: URL { assetCatalog.appendingPathComponent("StatusItemIcon.imageset") }
-    var iconArtwork: URL { root.appendingPathComponent("Design/icon/source/app-icon-artwork.png") }
+    var logo: URL { root.appendingPathComponent("Design/icon/source/logo.png") }
     var config: URL { root.appendingPathComponent("Config") }
     var export: URL { root.appendingPathComponent("Design/icon/export") }
     var previews: URL { root.appendingPathComponent("docs/design/img") }
@@ -53,7 +53,7 @@ struct Repository {
     var dmgBackground2x: URL { config.appendingPathComponent("dmg-background@2x.png") }
 
     func loadAppIcon() throws -> AppIcon {
-        try AppIcon(contentsOf: iconArtwork)
+        AppIcon(mark: try Mark(contentsOf: logo))
     }
 
     /// The generated texture under the DMG background, when one has been imported.
@@ -156,9 +156,15 @@ func writeExports(_ repo: Repository) throws {
     // Favicons fill their square with the tile: no margin, no shadow. Browsers show the 32 px one at
     // 16 pt, so it has the 16 pt crop. The 180 px apple-touch-icon is an opaque square because iOS
     // applies its own mask.
-    try Output.writePNG(icon.flatTile(pixels: 32, crop: AppIcon.tightCrop), to: repo.export.appendingPathComponent("favicon-32.png"))
+    try Output.writePNG(icon.flatTile(pixels: 32), to: repo.export.appendingPathComponent("favicon-32.png"))
     try Output.writePNG(icon.square(pixels: 180), to: repo.export.appendingPathComponent("favicon-180.png"))
     try Output.writePNG(icon.flatTile(pixels: 512), to: repo.export.appendingPathComponent("favicon-512.png"))
+    // The mark without the tile: a bitmap lifted off the logo, and its traced outline as SVG, in
+    // its own colours and in the text's.
+    let outline = try MarkOutline(mark: icon.mark)
+    try Output.writePNG(icon.markAlone(pixels: 1024), to: repo.export.appendingPathComponent("pasto-mark-1024.png"))
+    try Output.write(outline.svg, to: repo.export.appendingPathComponent("pasto-mark.svg"))
+    try Output.write(outline.monochromeSVG, to: repo.export.appendingPathComponent("pasto-mark-mono.svg"))
     print("export         → \(repo.export.path)")
 }
 
@@ -170,12 +176,15 @@ func writePreviews(_ repo: Repository, before: URL?) throws {
     try Output.writePNG(Sheets.sizeSheet(rows: [after], zoomIndices: [3, 4], zoom: 6),
                         to: repo.previews.appendingPathComponent("icon-sizes.png"))
 
-    // The small sizes: the whole artwork scaled down (top) against what ships (bottom): 16 pt @1x,
-    // 16 pt @2x and 32 pt @1x.
-    let scaled = [icon.icon(pixels: 16), icon.icon(pixels: 32)]
-    let shipped = [icon.image(points: 16, scale: 1), icon.image(points: 16, scale: 2), icon.image(points: 32, scale: 1)]
-    try Output.writePNG(Sheets.sizeSheet(rows: [scaled, shipped], zoomIndices: [0, 1, 2], zoom: 8),
-                        to: repo.previews.appendingPathComponent("icon-small-sizes.png"))
+    // The mark alone, lifted off the logo's white, on a light and a dark strip.
+    // Next to it, the traced outline filled with its gradient, and in one colour.
+    let outline = try MarkOutline(mark: icon.mark)
+    let alone = [icon.markAlone(pixels: 360), outline.image(pixels: 360)]
+    try Output.writePNG(Sheets.stack([
+        Sheets.strip(alone + [outline.image(pixels: 360, solid: RGBA(0x1F2120))], side: 360, background: Sheets.light),
+        Sheets.strip(alone + [outline.image(pixels: 360, solid: RGBA(0xF4F5F4))], side: 360, background: Sheets.dark),
+    ], background: Sheets.light),
+                        to: repo.previews.appendingPathComponent("mark.png"))
 
     if let before {
         let files = ["icon_128x128@2x.png", "icon_128x128.png", "icon_32x32@2x.png", "icon_32x32.png", "icon_16x16.png"]

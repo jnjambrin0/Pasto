@@ -21,8 +21,8 @@ texts stay true.
 | File | Size (px) | Scene |
 |---|---|---|
 | `panel.png` | 3456 × 784 | **Hero.** The panel alone, on the *Clipboard* tab with a red *Pasto Links* pinboard next to it, showing a row of cards: three texts (a short message, a meeting address, a code snippet), a link with its image, an image, a colour (`#2BA65B`) and the first welcome note. The first card is selected |
-| `search.png` | 3456 × 784 | The panel searching: a word typed in the search field and the matching items, from the history and from pinboards, in the strip below |
-| `preview.png` | 3456 × 1334 | The preview open above the second text card (the meeting address), with its *Edit* button and its character, word and line counts, and the panel below |
+| `search.png` | 3456 × 784 | The panel searching: *pasto* typed in the search field, the suggested filters under it and the matching items, from the history and from the pinboard, in the strip below |
+| `preview.png` | 3456 × 1314 | The preview open above the second text card (the meeting address), with its *Edit* button and its character, word and line counts, and the panel below |
 | `onboarding.png` | 1312 × 1248 | The welcome window's first step: the illustration of cards growing from the grass and *Get Started* |
 | `suggestions.png` | 1312 × 1510 | The welcome window's *Smart Suggestions* step, with suggestions on and the screen recording permission not yet granted |
 | `stack.png` | 1120 × 1294 | The Stack panel with its first-use hint and three text rows waiting to be pasted |
