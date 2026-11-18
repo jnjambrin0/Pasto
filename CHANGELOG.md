@@ -12,6 +12,15 @@ embeds in the update feed. This file collects the same notes, grouped by kind of
 
 - The source code is public under the MIT licence, with guides to the architecture, development and releases.
 
+## [1.0.4]
+
+### Changed
+
+- **A new icon**: three frosted cards rising from the grass. At the smallest sizes, such as in Finder's lists, it
+  shows the front card and the grass up close, so it stays recognisable.
+- **A new menu bar icon**: Pasto's tile with two leaves cut out of it, sharp on every display and sized like the
+  system's own icons beside it. The Stack panel's title shows it too.
+
 ## [1.0.3] - 2026-11-18
 
 A better first run.
@@ -107,6 +116,7 @@ The first release of Pasto, a clipboard manager for your Mac. Pasto needs macOS 
 - **Updates**: Pasto checks for new versions once a day. You can also choose *Check for Updates…* in its menu.
 
 [Unreleased]: https://github.com/jnjambrin0/Pasto/compare/v1.0.3...HEAD
+[1.0.4]: https://github.com/jnjambrin0/Pasto/releases/tag/v1.0.4
 [1.0.3]: https://github.com/jnjambrin0/Pasto/releases/tag/v1.0.3
 [1.0.2]: https://github.com/jnjambrin0/Pasto/releases/tag/v1.0.2
 [1.0.1]: https://github.com/jnjambrin0/Pasto/releases/tag/v1.0.1
