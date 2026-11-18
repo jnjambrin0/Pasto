@@ -171,12 +171,12 @@ installed copy of Pasto. Launch arguments, tests, conventions and tools are desc
 ## Project layout
 
 ```text
-Pasto/                The app target: entry point, asset catalog, icon, sounds, Info.plist strings
+Pasto/                The app target: entry point, asset catalog (icon, menu bar glyph), sounds, Info.plist strings
 Packages/PastoKit/    The app's code: 17 modules and their unit tests
 Config/               Info.plist keys, release settings, export options, disk image artwork
 scripts/              build, run, test, release and illustration import
 Tools/                Developer tools: benchmarks, UI probe, card gallery, icon and sound generators
-Design/               Icon exports and the source artwork of the illustrations
+Design/               The icon's source artwork and exports, and the source artwork of the illustrations
 docs/                 Architecture, development, releasing, privacy, design notes and release notes
 ```
 

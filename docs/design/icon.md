@@ -1,7 +1,8 @@
 # Pasto's icon
 
-The app icon, the menu bar glyph, the disk image background and the web exports. All of them come from a single
-generator, `Tools/IconKit`, deterministically: no file listed here is edited by hand.
+The app icon, the menu bar glyph, the disk image background and window, and the web exports. All of them are
+written by one generator, `Tools/IconKit`, deterministically: no file listed here is edited by hand. The app icon has
+a single source, a painted artwork; the menu bar glyph and the disk image background are drawn in code.
 
 ![The icon at 256, 128, 64, 32 and 16 px, on light and dark](img/icon-sizes.png)
 
@@ -9,124 +10,134 @@ generator, `Tools/IconKit`, deterministically: no file listed here is edited by 
 
 ## Concept
 
-*Pasto* is Spanish for grass. The icon is **three clipboard cards fanned out, growing from a meadow**: the front
-card, white with lines of text, is the clip; the two cards behind it, tinted green, stand for the history. Grass
-grows in front of and behind the cards, bent slightly to the right by a light breeze, and the cards darken where
-they sink into it.
+*Pasto* is Spanish for grass. The icon is **three frosted clipboard cards rising from the grass** on a green field:
+the front card, white with a green title line and two lines of text, is the clip; the two cards behind it, tinted
+green, stand for the history. The grass in front of them bends and catches the light. There are no letters or
+arrows.
 
-There are no letters or arrows. The green shifts from a sunny, yellowish tone at the top to a bluish emerald at
-the bottom, which keeps it apart from the flat greens of the system's own apps.
+The **menu bar glyph** keeps the tile and the grass: the app's rounded tile, filled, with a large leaf and a smaller
+one cut out of it. The Stack panel's title shows the same glyph.
 
-## Palette
+## App icon
 
-sRGB values. The source of truth is `Palette` in `Tools/IconKit/Sources/iconkit/PastoIcon.swift`.
+### Source
 
-| Use | Value |
+`Design/icon/source/app-icon-artwork.png`: a full-bleed square (1254 × 1254) with **no rounded corners and no
+transparency**; IconKit adds the tile's shape, margin and shadow. It refuses an artwork that is not square, is
+smaller than 1024 px or has transparent pixels. To change the icon, replace that file and run `iconkit all`.
+
+### Construction
+
+| | |
 |---|---|
-| Tile, top / middle / bottom (slightly diagonal gradient) | `#7DD46A` / `#2BA65B` / `#0A6B4A` |
-| Overhead light (radial, top) | `#FFF7D6` at 24 % |
-| Tile rim light (fades towards the bottom) | `#FFFFFF` at 50 % |
-| Tile shadow (classic format) | `#000000` at 30 %, offset 10, blur 20 |
-| Front card, top / middle / in the grass | `#FFFFFF` / `#F0F7F2` / `#7DB590` |
-| Back cards, top / middle / in the grass | `#E8F6EB` / `#D6EEDC` / `#5E9F75` |
-| Title line / text lines | `#A9D3B4` / `#DCEDE1` |
-| Card shadow | `#04381F` at 30 %, offset 12, blur 36 |
-| Far grass (behind the cards), tip / root / lit fold | `#9BDB6A` / `#3DAF5C` / `#BCE985`→`#5BC066` |
-| Middle grass (in front), tip / root / lit fold | `#45B45B` / `#137645` / `#66CA68`→`#1E8A4E` |
-| Near grass (foreground), tip / root / lit fold | `#1C8A4B` / `#08532F` / `#2A9C54`→`#0D6139` |
-| Small sizes: title line / back cards | `#7DBB8F` / `#A7D8B4` |
-| Dark appearance (Icon Composer), tile top / bottom | `#1D4A31` / `#0A2116` |
-| Menu bar glyph | black with alpha (template image; AppKit tints it) |
-| Disk image | see "Disk image background and window" below |
+| Grid | 1024 canvas, **824 tile centred** (100 of margin for the shadow), like every macOS icon |
+| Tile corners | continuous (*squircle*), radius **214** on the 824 tile: measured on the system's own icons on macOS 27, whose mask at 1024 px matches this shape to within the anti-aliasing |
+| Shadow | black at 30 %, 10 down, blur 20 (scaled with the icon) |
+| Margin at each size | 100/1024 of the side, rounded down to whole pixels so the tile's edges are crisp: 1 px at 16, 3 px at 32 (as the system's icons), 6 at 64, 12 at 128 |
 
-## Construction
-
-### Grid
-
-A 1024 canvas on the macOS icon grid: an **824 tile, centred** (100 of margin for the shadow), continuous corners
-(*squircle*) with a radius of 185.4, and the shadow inside the canvas. Coordinates have their origin at the top
-left.
-
-### Layers, back to front
-
-1. **Tile**: a three-stop gradient, a radial overhead light and a 3-unit rim light that fades out at 42 % of the
-   height.
-2. **Far grass**: two tall tufts of three blades at the sides, leaning outwards; they frame the fan.
-3. **Back cards**: 380 × 650, radius 48, rotated ±12° around (512, 980); they start 48 lower than the front card
-   so that their inner corner does not show. Each has a thread of light along its top edge.
-4. **Front card**: 380 wide, top at y = 226, radius 48, soft shadow. Five rounded lines of text: a title (26 high,
-   60 % of the width) and four lines 20 high at 100/86/94/68 % of the width.
-5. **Middle grass**: 14 blades in front of the cards, bent by the breeze to the right (they overlap like scales
-   instead of crossing); their tips stop between y ≈ 570 and 660, below the text. It casts a soft shadow on the
-   cards.
-6. **Near grass**: 11 wider, darker blades that ground the composition; their roots sit below the tile, so no
-   strip of soil is needed.
-
-Each **blade** (`Blade`: base, width, height, lean, stiffness) is a tapering ribbon around a curved spine: it
-leaves the ground vertically and bends towards the tip, and the outer edge of the curve keeps more width. The half
-facing the light (the outside of the curve) is painted lighter, like a fold. Each row has a vertical gradient from
-the root (dark) to the tip.
+Every rendition is drawn from the artwork at its own size, never by scaling another rendition down. The artwork is
+resampled by halving it until it is within twice the target, so the large reductions do not alias.
 
 ### Small sizes
 
-Every size is drawn from vectors, never by scaling a bitmap down, with its own level of detail:
+Scaled down whole, the artwork stops reading at 16 pt: the cards turn into a pale smudge in the middle of the tile.
+So the smallest slots show a crop of the artwork instead:
 
-| Pixels | Art | Simplification |
+| Slot | Pixels | What it shows |
 |---|---|---|
-| ≥ 128 | `full` | everything above |
-| 64 | `medium` | two 2 px lines of text, 7 + 5 blades with the same breeze, no thread of light |
-| 32 | `small` | a 26 px tile (like the system's), a 10 px front card on whole pixels and clearly the lightest, back cards as tinted strips, two 1 px lines, flat and darker blades |
-| 16 | `tiny` | a 12 px tile (like the system's), a single 6 px white card with one line and three dark blades |
+| 16 pt @1x and @2x | 16, 32 | `AppIcon.tightCrop`: 62 % of the artwork from (25 %, 25 %), centred on the front card and the grass. A white card with its green title line, in the grass |
+| 32 pt @1x | 32 | `AppIcon.stackCrop`: 70 % from (20 %, 22 %), which keeps the stack of cards behind the front one |
+| 32 pt @2x and larger | 64 – 1024 | the whole artwork |
 
-### Icon Composer (`Pasto/AppIcon.icon`)
+![The small sizes: the whole artwork scaled down (top) and what ships (bottom)](img/icon-small-sizes.png)
 
-A folder document with `icon.json` and its layers in `Assets/` (SVG; the canvas is the tile's square, 1024 with no
-margin, and the system applies its shape, its shadow and Liquid Glass).
+*Top: the whole artwork at 16 and 32 px. Bottom: what ships at 16 pt @1x, 16 pt @2x and 32 pt @1x. Each one at
+actual size, then magnified ×8.*
 
-- **Background**: the document's `fill`, a `#7DD46A` → `#0A6B4A` gradient; in dark mode, `#1D4A31` → `#0A2116`
-  (`fill-specializations` with `appearance: dark`). The system derives the **tinted** and **clear** variants, which
-  is why the background is a fill and not a layer.
-- **Groups** (top to bottom): near + middle grass (neutral shadow 0.35); text + front card + back cards (shadow 0.5,
-  specular highlight; **both card layers are glass**, which gives them the lit edge the classic format draws by
-  hand); far grass.
-- Text and grass are not glass: glass lines look like embossed tiles, and the grass loses its colour.
+### What goes into the bundle
 
-![Icon Composer appearances: default, tinted and clear (light, top) and their dark versions](img/icon-composer-renditions.png)
+`Pasto/Assets.xcassets/AppIcon.appiconset` (`ASSETCATALOG_COMPILER_APPICON_NAME` is `AppIcon`): `actool` compiles its
+ten PNG files into `Assets.car` and `AppIcon.icns` as they are, so the small sizes keep their crops (the 16 px image
+of the built `AppIcon.icns` is identical to `icon_16x16.png`). It is a classic icon set, not a layered `.icon`
+document, so the system shows the icon as drawn, without tinted and clear appearances. Because the tile has the system's shape, Finder draws
+it without adding a frame.
 
-*Rendered with `ictool`, Icon Composer's renderer, from the document in the repository.*
+About, the welcome window and the permission windows use `NSApp.applicationIconImage`, which reads the icon from the
+bundle (`PastoApp/AppIconImage.swift`).
 
-### Menu bar glyph (`StatusItemIcon.imageset`)
+### Exports (`Design/icon/export/`)
 
-The motif, reduced: the outline of a card with one line of text and a tuft of grass growing inside it, leaning like
-the icon's. **18 × 18 pt** (the logical size `PastoStatusItem` uses), as a template image. Each scale is drawn on
-its own pixel grid: the outline is a filled ring with every edge on whole pixels (1.5 pt at @2x, like the menu
-bar's SF Symbols; 1 px at @1x), and @1x has two blades instead of three so that there is a gap between them.
+| File | What it is |
+|---|---|
+| `pasto-icon-1024.png`, `pasto-icon-512.png` | the icon with its margin and shadow (the README shows the 512 one) |
+| `favicon-32.png` | the tile filling the square, no shadow, from the 16 pt crop: browsers show it at 16 pt |
+| `favicon-180.png` | `apple-touch-icon`: the whole artwork as an opaque square (iOS applies its own mask) |
+| `favicon-512.png` | the tile filling the square, continuous corners, no shadow |
 
-![The glyph on a light and a dark menu bar: @1x and @2x at actual size and magnified](img/status-item.png)
+## Menu bar glyph (`StatusItemIcon.imageset`)
 
-### Disk image background and window (`Config/dmg-background.png`, `@2x`)
+An **18 × 18 pt** template image (black with alpha; AppKit tints it for the menu bar), at @1x and @2x. It is drawn
+once in points and rasterised at each scale; the geometry is chosen so that both scales land on the pixel grid.
+Coordinates are in points with y up, from the bottom left of the 18 pt box. Source:
+`Tools/IconKit/Sources/iconkit/StatusGlyph.swift`.
+
+| Part | Geometry |
+|---|---|
+| Tile | 14 × 14 at (2, 2); continuous corners, radius 3.64 (the app icon's 214/824) |
+| Large leaf | base centred on (6.5, 4), 4 wide; tip at (12, 14.2); outer edge swell 1, inner 0.5 |
+| Small leaf | base centred on (11.75, 4), 2.5 wide; tip at (14, 9.6); outer edge swell 0.35, inner 0.55 |
+| Fill | even-odd: the leaves are holes in the tile |
+
+Each leaf has a flat base and a pointed tip: from the left end of its base, a curve to the tip whose control points
+are (base.x − width × outer − lean × 0.1, base.y + 0.45 h) and (tip.x − 0.35 width, tip.y − 0.25 h); back to the right
+end of the base through (tip.x + 0.1 width, tip.y − 0.45 h) and (base.x + width × inner, base.y + 0.3 h), where h is
+the leaf's height and lean how far its tip leans right.
+
+**Pixel rules.**
+
+- The tile's straight edges sit on whole pixels at 1x and 2x, so they stay crisp instead of a grey half pixel.
+- The leaves stand on y = 4, a whole pixel at both scales: a 2 pt band of tile below them reads as the ground.
+- At 1x, every row and column has at least one fully solid pixel between the two holes, and between each hole and the
+  tile's edge: no hairline of half-covered pixels is left anywhere. `iconkit status-item` checks this at both scales
+  and refuses to write a glyph that fails it.
+- The tile is centred in the box; the leaves sit in its lower right, rising to the upper right like the grass in the
+  app icon.
+- **Weight.** 14 pt is the size of the filled squares SF Symbols draw at 15 pt medium (`app.fill`, `square.fill`);
+  with the leaves cut out, the glyph covers about 136 pt², between the system's outlined symbols at that size
+  (`clock`, `wifi`: 75–90 pt²) and the battery (170–190 pt²).
+
+**States.** `PastoStatusItem` draws the glyph as a template. The capture pulse fades it to 35 % and back; while
+capture is blocked the button *appears disabled*, which AppKit draws at about half the opacity; while paused the glyph
+gives way to the `pause.circle` symbol. All of them are in the sheet below.
+
+![The glyph beside SF Symbols on a light and a dark menu bar, magnified, dimmed, paused and in the Stack title](img/status-item.png)
+
+*On a light and a dark menu bar: `wifi`, `battery.75percent`, `magnifyingglass` and `clock` at 15 pt medium with the
+glyph, at 1x and at 2x; the glyph at 1x magnified ×8 and at 2x ×4; at 2x, the capture pulse (35 %), capture blocked
+(50 %) and the paused symbol; the Stack panel's title.*
+
+**In the Stack panel.** `StackHeader` shows the same image at its own size (18 pt), so both scales draw pixel for
+pixel; its 14 pt tile fills the 14 pt room the title gives it, and its margin overflows that room.
+
+## Disk image background and window (`Config/dmg-background.png`, `@2x`)
 
 660 × 400 pt, no text, with a straight arrow (`#3C9D5D`, 5 pt) between the two icon slots. Two versions:
 
 - **On the painted texture** (the one that ships): `Config/dmg-texture.png`, an almost white gradient with a band of
-  pale grass along the bottom edge, cropped to 660 × 400 keeping that edge. Only the arrow and a capsule plate under
-  each label (124 × 24 pt, `#448257` with a lit rim) are drawn on top.
+  pale grass along the bottom edge, cropped to 660 × 400 keeping that edge. Only the arrow is drawn on top.
 - **Without the texture** (fallback, if `Config/dmg-texture.png` is deleted): a very light sky over a vector
-  meadow; both icons stand on the hill, the way the icon's cards grow from the grass, among tufts of blades (the
-  icon's blade, with its lit fold), with a pale far hill behind and a darker slope in front.
+  meadow; both icons stand on the hill, among tufts of blades with a lit fold, with a pale far hill behind and a
+  darker slope in front. The labels fall on the meadow's mid tone (`#448257`).
 
-**Labels that read in light and dark mode.** Finder writes each icon's name in black in the light appearance and
-in white in the dark one, and does not adapt the background (there is no way to set the label colour). So every
-label sits on a mid tone (`#448257`, luminance 0.179: the plate on the texture, the meadow in the vector version)
-that gives both colours the same contrast, 4.6:1, the highest possible for both at once. `dmg-inspect` measures it
-on the real disk image and fails below 4:1.
+**Labels.** Over a background picture, Finder on macOS 27.2 writes the icon names in black, in the dark appearance
+too, and there is no way to set their colour; over the nearly white texture they need nothing behind them.
+`dmg-inspect` measures the contrast of black labels on the real disk image and fails below 4:1.
 
 | Element | Value |
 |---|---|
 | `Pasto.app` / link to `/Applications` (icon centre, pt) | (170, 186) / (490, 186) |
 | Icons / labels | 128 pt / 13 pt, below |
 | Window | content 660 × 400; frame 660 × 432 (macOS 27's 32 pt title bar); no sidebar, toolbar, status bar or path bar |
-| Label plate (on the texture) | 124 × 24 pt, centred 12 pt below the icon plus 64; `#448257`, rim `#6FAF7C` at 55 % |
 | Vector fallback: sky, top / bottom | `#F8FBF7` / `#E4F1E5` |
 | Fallback: far hill | `#D3EAD7` → `#C2E1C8` |
 | Fallback: meadow, crest / label band / bottom; rim light | `#67A774` / `#448257` / `#427F53`; `#A6D9A6` |
@@ -136,9 +147,9 @@ on the real disk image and fails below 4:1.
 
 Finder does not lay the window out: `scripts/release.sh` mounts the image where Finder does not see it and
 `iconkit dmg-window` writes its `.DS_Store` (the `bwsp`, `icvp` with the background alias, `icvl`/`vstl`, `vSrn` and
-per-icon `Iloc` records); the volume icon is `.VolumeIcon.icns`, this same icon at every size. The file format is
-documented in `Tools/IconKit/Sources/iconkit/DSStore.swift` and `FinderAlias.swift`; the steps and checks are in
-[RELEASING.md](../RELEASING.md).
+per-icon `Iloc` records); the volume icon is `.VolumeIcon.icns`, made by `iconkit dmg-stage` from the same renditions
+as the app icon set. The file format is documented in `Tools/IconKit/Sources/iconkit/DSStore.swift` and
+`FinderAlias.swift`; the steps and checks are in [RELEASING.md](../RELEASING.md).
 
 **Where the texture comes from.** `scripts/import-illustrations.sh` takes `Design/generated/dmg-texture.png`,
 crops it to the 660:400 proportion across its full width keeping the bottom edge (its grass), saves it at
@@ -147,59 +158,31 @@ nothing is drawn under them.
 
 ![Mock-up of the background with both icons and their labels in black (top) and white](img/dmg-layout.png)
 
-And the window as it comes out of the built disk image (records read back from the `.DS_Store`, the volume's real
+And the window as it comes out of a built disk image (records read back from the `.DS_Store`, the volume's real
 icons), in light and dark mode:
 
 ![The disk image window, as drawn by dmg-inspect](img/dmg-window.png)
 
-### Exports (`Design/icon/export/`)
-
-| File | What it is |
-|---|---|
-| `pasto-icon-1024.png`, `pasto-icon-512.png` | the classic icon (with margin and shadow) |
-| `pasto-icon.svg` | the same icon as SVG (the shadow is an `feDropShadow`) |
-| `favicon-32.png` | full-bleed tile with the 32 px art |
-| `favicon-180.png` | `apple-touch-icon`: an opaque square (iOS applies its own mask) |
-| `favicon-512.png`, `favicon.svg` | full-bleed tile with continuous corners, no shadow |
-
-## What goes into the bundle
-
-`actool` receives `Pasto/AppIcon.icon` (the `Pasto/` folder is synchronised with the target, so the project file
-did not need to change) and `Assets.xcassets`. **When both exist under the name `AppIcon`, the `.icon` wins**:
-`Assets.car` carries the icon stack (`AppIcon.iconstack`, with light, dark and tintable appearances and vector
-layers) and `AppIcon.icns` is generated by rendering that document. The PNG files of the `.appiconset` do not go
-into the bundle.
-
-As a consequence, the system rasterises the small sizes from the layers; at 16 px they look softer than the
-hand-tuned `tiny`/`small` variants. That trade-off is deliberate: the deployment target is macOS 27, and the `.icon`
-gives Liquid Glass, dark mode and tinting, and avoids the grey frame macOS can put around classic icons. To prefer
-the hand-tuned small sizes, delete `Pasto/AppIcon.icon`: the build falls back to the `.appiconset` with no other
-change.
-
-About, the welcome window and the permission windows use `NSApp.applicationIconImage`, which reads the icon from the
-bundle, so they do not depend on the format.
-
 ## Regenerating
 
 ```bash
-swift run --package-path Tools/IconKit iconkit all     # asset catalog, .icon, glyph, disk image, exports and previews
-scripts/build.sh                                       # checks that actool compiles both formats
+swift run --package-path Tools/IconKit iconkit all     # app icon set, glyph, disk image, exports and previews
+scripts/build.sh                                       # checks that the asset catalog compiles
 ```
 
-Individual commands: `app-icon`, `icon-composer`, `status-item`, `dmg`, `export`, `previews`; `draft <folder>` makes
-quick renders outside the repository for iterating. The Icon Composer appearances need `ictool` (inside
-`Xcode.app/Contents/Applications/Icon Composer.app`); without it, `previews` skips them.
+Individual commands: `app-icon` (the asset catalog's icon set), `status-item` (the glyph), `dmg` (the disk image
+background), `export` (`Design/icon/export/`) and `previews` (the pictures in `docs/design/img/`, except
+`dmg-window.png`, which `scripts/release.sh` draws from the built disk image). `previews --before <.appiconset folder>`
+also writes a before/after comparison of the icon sizes.
 
-To change the design: colours in `Palette`, geometry in `IconArt.full` (and its small variants), groups and glass of
-the `.icon` in `IconComposer.groups`. After regenerating, look at `docs/design/img/` and update the palette in this
-document if it changed.
+To change the icon, replace the artwork; to change which part of it the small sizes show, `AppIcon.tightCrop` and
+`AppIcon.stackCrop` in `Tools/IconKit/Sources/iconkit/AppIcon.swift`. To change the glyph, `StatusGlyph.tile` and
+`StatusGlyph.leaves`. After regenerating, look at `docs/design/img/`.
 
 ## How it is checked
 
-- The `.icon` format follows Xcode 27's template and documents written by Icon Composer; the specialisations
-  (`fill-specializations` with `appearance`) and the layer order are checked by rendering all six appearances with
-  `ictool`.
-- `assetutil --info` on the built `Assets.car` lists `AppIcon.iconstack` in its three appearances and the glyph at
-  @1x and @2x.
-- The SVG files validate with `xmllint`, and AppKit rasterises them like the PNG files.
-- Two consecutive runs of the generator produce byte-identical files.
+- Two consecutive runs of `iconkit all` leave the working tree unchanged.
+- `iconkit status-item` checks the glyph for hairlines at 1x and 2x before writing it.
+- `assetutil --info` on the built `Assets.car` lists the ten `AppIcon` renditions and `StatusItemIcon` at 18 and
+  36 px with *Template Mode: template*; loaded from the built bundle, the glyph is an 18 × 18 pt template image with
+  both scales.

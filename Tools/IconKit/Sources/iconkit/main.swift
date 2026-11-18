@@ -1,8 +1,9 @@
 import CoreGraphics
 import Foundation
 
-// iconkit: writes every piece of Pasto's visual identity from the descriptions in this package.
-// Output is deterministic: running it twice leaves the working tree unchanged.
+// iconkit: writes every piece of Pasto's visual identity, from the app icon's artwork and from the
+// descriptions in this package. Output is deterministic: running it twice leaves the working tree
+// unchanged.
 
 let usage = """
     usage: swift run --package-path Tools/IconKit iconkit <command> [--root <repo>] [--before <folder>]

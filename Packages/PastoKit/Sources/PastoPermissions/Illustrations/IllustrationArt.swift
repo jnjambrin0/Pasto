@@ -80,7 +80,7 @@ extension Color {
 
 /// One blade of grass: a tapering ribbon around a curved spine that leaves the ground upright and
 /// bends towards its tip, the outside of the bend keeping more width. The same construction as the
-/// app icon's blades (Tools/IconKit, `BladeOutline`).
+/// disk image background's blades (Tools/IconKit, `BladeOutline`).
 package struct GrassBlade: Sendable {
     package var x: CGFloat
     package var width: CGFloat

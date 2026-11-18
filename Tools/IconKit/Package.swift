@@ -1,9 +1,9 @@
 // swift-tools-version: 6.2
 import PackageDescription
 
-// Draws every piece of Pasto's visual identity from one vector description: the app icon (asset
-// catalog and Icon Composer document), the menu-bar glyph, the DMG window background and the
-// exports for the web. Run it with `swift run --package-path Tools/IconKit iconkit --help`.
+// Writes Pasto's visual identity: the app icon set and the web exports from the painted artwork in
+// Design/icon/source, the menu bar glyph, and the DMG window background and layout. Run it with
+// `swift run --package-path Tools/IconKit iconkit --help`.
 
 let package = Package(
     name: "IconKit",
