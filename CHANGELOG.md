@@ -12,7 +12,7 @@ embeds in the update feed. This file collects the same notes, grouped by kind of
 
 - The source code is public under the MIT licence, with guides to the architecture, development and releases.
 
-## [1.0.4]
+## [1.0.4] - 2026-11-18
 
 ### Changed
 
@@ -20,6 +20,15 @@ embeds in the update feed. This file collects the same notes, grouped by kind of
   shows the front card and the grass up close, so it stays recognisable.
 - **A new menu bar icon**: Pasto's tile with two leaves cut out of it, sharp on every display and sized like the
   system's own icons beside it. The Stack panel's title shows it too.
+
+### Fixed
+
+- **The Stack stays on screen**: with three or more items the panel could grow past the bottom of the screen and
+  hide its last rows. It now moves up as it grows.
+
+### Changed
+
+- *Help › Report a Problem…* writes to hello@jnjambrino.com.
 
 ## [1.0.3] - 2026-11-18
 
@@ -115,7 +124,7 @@ The first release of Pasto, a clipboard manager for your Mac. Pasto needs macOS 
 - **Suggestions**: Pasto can look at the window you are pasting into and put the clips that fit it first.
 - **Updates**: Pasto checks for new versions once a day. You can also choose *Check for Updates…* in its menu.
 
-[Unreleased]: https://github.com/jnjambrin0/Pasto/compare/v1.0.3...HEAD
+[Unreleased]: https://github.com/jnjambrin0/Pasto/compare/v1.0.4...HEAD
 [1.0.4]: https://github.com/jnjambrin0/Pasto/releases/tag/v1.0.4
 [1.0.3]: https://github.com/jnjambrin0/Pasto/releases/tag/v1.0.3
 [1.0.2]: https://github.com/jnjambrin0/Pasto/releases/tag/v1.0.2
